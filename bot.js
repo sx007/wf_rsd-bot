@@ -28,6 +28,10 @@ client.on('message', message => {
     if(commandIS("привет", message)){
         message.reply(' привет!');
     }
+    /* Справка по командам */
+    if(commandIS("команды", message)){
+        message.channel.send("Доступно для смертных: !привет, !скажи.\nДля модеров: !удалить, !кик");
+    }
     /* команда ютюб */
     if(commandIS("ютюб", message)){
         if(args.length === 1){
