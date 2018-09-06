@@ -28,40 +28,29 @@ client.on('message', message => {
     if(commandIS("привет", message)){
         message.reply(' привет!');
     }
-    /* Справка по командам */
     if(commandIS("команды", message)){
-        message.channel.send("Доступно для смертных: !привет, !скажи.\nДля модеров: !удалить, !кик");
+        if(message.author.client) return;
+        message.channel.send("Доступно `для смертных`: !привет\n`Для модеров:` !скажи, !удалить, !кик");
     }
-    /* команда ютюб */
-    if(commandIS("ютюб", message)){
-        if(args.length === 1){
-            message.channel.send('Ты не указал аргумент. Использу: `!ютюб [номер эпизода]`');
-        } 
-        else if(args.length === 2){
-            message.channel.send('Привет, Ютюб. Это эпизод '+ args[1]);
-        } 
-        else{
-            message.channel.send('Ты указал много аргументов. Использу: `!ютюб [номер эпизода]`');
-        }
-    }
+    
     /* команда скажи */
     if(commandIS("скажи", message)){
         /* вот тут разделяются права */
         if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
             if(args.length === 1){
-            message.channel.send('Ты не указал аргумент. Использу: `!скажи [что сказать]`');
+            message.channel.send('Ты не указал аргумент. Используй: `!скажи [что сказать]`');
         } else {
         message.channel.send(args.join(" ").substring(7));
         }
      } else {
         message.channel.send('Ты не `Администратор` или `Модератор`');
     }
-}
+    }
     /* Удаление сообщения */
     if(commandIS("удалить", message)) {
         if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
             if(args.length >= 3){
-            message.channel.send('Ты указал много аргументов. Использу: `!удалить (количество сообщений)`');
+            message.channel.send('Ты указал много аргументов. Используй: `!удалить (количество сообщений)`');
         } else {
             var msg;
             if(args.length === 1) {
@@ -78,7 +67,7 @@ client.on('message', message => {
     if(commandIS("кик", message)) {
         if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
             if(args.length === 1){
-            message.channel.send('Ты не указал аргумент. Использу: `!кик [кого выгнать с сервера]`');
+            message.channel.send('Ты не указал аргумент. ИспользуЙ: `!кик [кого выгнать с сервера]`');
         } else {
         message.guild.member(message.mentions.users.first()).kick();
         }
