@@ -24,12 +24,12 @@ client.on('ready', () => {
 /* команды сообщений */
 client.on('message', message => {
     var args = message.content.split(/[ ]+/);
+    if(message.author.client) return;
     /* команда привет */
     if(commandIS("привет", message)){
         message.reply(' привет!');
     }
     if(commandIS("команды", message)){
-        if(message.author.client) return;
         message.channel.send("Доступно `для смертных`: !привет\n`Для модеров:` !скажи, !удалить, !кик");
     }
     
