@@ -18,9 +18,10 @@ function hasRole(mem, role){
     }
 }
 /* Показывает что бот в сети */
-client.on('ready', () => {
-    console.log('Бот в сети!');
-})
+client.on("ready", () => {
+  client.user.setPresence({ game: { name: config.game, type: 0 } })
+   console.log("Бот успешно запущен!");
+});
 /* команды сообщений */
 client.on('message', message => {
     var args = message.content.split(/[ ]+/);
