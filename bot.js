@@ -1,76 +1,131 @@
-const Discord = require ('discord.js');
+const Discord = require("discord.js");
 const client = new Discord.Client();
-/* Задаётся шаблон для команд */
-function commandIS(str, msg){
-    return msg.content.toLowerCase().startsWith("!" + str);
-}
+const config = require("./config.json");
+const fs = require("fs");
 
-function pluck(array) {
-    return array.map(function(item) { return item["name"]; });
-}
-/* Роли */
-function hasRole(mem, role){
-    if (pluck(mem.roles).includes(role)){
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-/* Показывает что бот в сети */
-client.on('ready', () => {
-    console.log('Бот в сети!');
-})
-/* команды сообщений */
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/);
-    /* команда привет */
-    if(commandIS("привет", message)){
-        message.reply(' привет!');
-    }
-    if(commandIS("команды", message)){
-        message.channel.send("Доступно `для смертных`: !привет\n`Для модеров:` !скажи, !удалить, !кик");
-    }
+client.on("ready", () => {
+  client.user.setPresence({ game: { name: config.game, type: 0 } })
+   console.log("Бот успешно запущен!");
+});
+//Обрабатываем события в сообщениях
+client.on("message", (message) => {
+  const toJoin = client.channels.get(config.radioMuz);
+  const botRoom = message.guild.channels.find("id", config.radioText);
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();  
+  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
     
-    /* команда скажи */
-    if(commandIS("скажи", message)){
-        /* вот тут разделяются права */
-        if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
-            if(args.length === 1){
-            message.channel.send('Ты не указал аргумент. Используй: `!скажи [что сказать]`');
-        } else {
-        message.channel.send(args.join(" ").substring(7));
-        }
-     } else {
-        message.channel.send('Ты не `Администратор` или `Модератор`');
+    if(command === 'ping') {
+      message.channel.send('Pong!');
+    } else
+    if (command === 'blya') {
+      message.channel.send('pizdec');
     }
+
+    if (command === "asl") {
+      let [age, sex, location] = args;
+      message.reply(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. Wanna date?`);
     }
-    /* Удаление сообщения */
-    if(commandIS("удалить", message)) {
-        if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
-            if(args.length >= 3){
-            message.channel.send('Ты указал много аргументов. Используй: `!удалить (количество сообщений)`');
-        } else {
-            var msg;
-            if(args.length === 1) {
-                msg=2;
-            } else {
-                msg=parseInt(args[1]) + 1;
+
+    if(command === "say"){
+      let text = args.slice(0).join(" ");
+      message.delete();
+      message.channel.send(text);
+    }
+    //radio
+    if (command === "radio") {
+      if (message.channel.id !== config.radioText) {
+        return message.channel.id(`Упс, заказ и прослушивание радио в канале ${botRoom}`
+        );
+      }
+      if (args.length < 1 || args.length > 2) {
+        return message.author.send([
+          "ОШИБКА: Недостаточно аргументов",
+          "Используйте: `!radio <play> <(optional) truckersfm | eurotruck | capitalfm`",
+        ]);
+      }
+      if (args[0] === "stop") {
+        toJoin.leave();
+        return botRoom.send("Радио остановлено");
+      }
+      if (!message.member.voiceChannel) {
+        return message.channel.send(
+          "Вы должны быть в голосовом канале, чтобы использовать эту команду"
+        );
+      }
+      if (message.member.voiceChannel.id !== config.radioMuz) {
+        return message.channel.send(
+          "Вы должны быть в радиоканале, чтобы использовать эту команду"
+        );
+      }
+      if (args[0] === "play") {
+        toJoin
+          .join()
+          .then(connection => {
+            if (connection.playing) {
+              connection.stopPlaying();
             }
-            message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-        }
-     } else {
-        message.channel.send('Ты не `Администратор` или `Модератор`');
+    
+            switch (args[1]) {
+              case "truckersfm":
+                botRoom.send("Сейчас играет: TruckersFM");
+                connection.playArbitraryInput("https://radio.truckers.fm/");
+                break;
+              case "eurotruck":
+                botRoom.send("Сейчас играет: Euro Truck Radio");
+                connection.playArbitraryInput(
+                  "http://radio.eurotruckradio.co.uk:8000/stream"
+                );
+                break;
+              case "capitalfm":
+                botRoom.send("Сейчас играет: CapitalFM");
+                connection.playArbitraryInput(
+                  "http://media-ice.musicradio.com/CapitalMP3"
+                );
+                break;
+              default:
+                {
+                  const radioArray = [
+                    {
+                      url: "http://radio.eurotruckradio.co.uk:8000/stream",
+                      name: "Euro Truck Radio",
+                    },
+                    {
+                      url: "https://radio.truckers.fm/",
+                      name: "Truckers FM",
+                    },
+                    {
+                      url: "http://media-ice.musicradio.com/CapitalMP3",
+                      name: "Capital FM",
+                    },
+                  ];
+                  const randomStream = Math.floor(
+                    Math.random() * radioArray.length
+                  );
+                  connection.playArbitraryInput(radioArray[randomStream]["url"]);
+                  botRoom.send(`Сейчас играет: ${radioArray[randomStream]["name"]}`);
+                }
+                break;
+            }
+          })
+          .catch(err => console.log(err));
+      }
+
+
+
+
+
+
+
     }
-    }
-    if(commandIS("кик", message)) {
-        if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
-            if(args.length === 1){
-            message.channel.send('Ты не указал аргумент. ИспользуЙ: `!кик [кого выгнать с сервера]`');
-        } else {
-        message.guild.member(message.mentions.users.first()).kick();
-        }
-    }
+
+    //Админ команды
+    //кик
+    if(command === "kick") {
+      if(message.author.id !== config.ownerID) return;
+      let member = message.mentions.members.first();
+      let reason = args.slice(1).join(" ");
+      member.kick(reason);
     }
 });
-client.login(process.env.BOT_TOKEN);
+client.login(config.token);
