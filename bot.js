@@ -39,7 +39,7 @@ client.on('message', message => {
         if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
             if(args.length === 1){
             //message.channel.send('Ты не указал аргумент. Используй: `!скажи [что сказать]`');
-            message.channel.send("A text to speech message from a bot.", {
+            message.channel.send("Проверка! Просто пиздец.", {
              tts: true
             });
         } else {
