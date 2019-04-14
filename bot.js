@@ -38,10 +38,7 @@ client.on('message', message => {
         /* вот тут разделяются права */
         if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
             if(args.length === 1){
-            //message.channel.send('Ты не указал аргумент. Используй: `!скажи [что сказать]`');
-            message.channel.send("Проверка! Просто пиздец.", {
-             tts: true
-            });
+            message.channel.send('Ты не указал аргумент. Используй: `!скажи [что сказать]`');
         } else {
         message.channel.send(args.join(" ").substring(7));
         }
@@ -76,5 +73,17 @@ client.on('message', message => {
         }
     }
     }
+});
+
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+let newUserChannel = newMember.voiceChannel
+let oldUserChannel = oldMember.voiceChannel
+
+
+if(!oldUserChannel && newUserChannel) {
+
+    client.channels.get('353436958724456448').send("Пользователь перешёл из голосового канала " + oldUserChannel.name + " в канал " 
+            + newUserChannel.name);
+}
 });
 client.login(process.env.BOT_TOKEN);
