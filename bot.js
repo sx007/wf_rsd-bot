@@ -74,21 +74,31 @@ client.on('message', message => {
     }
     }
 });
-
+//Докладываем в специальный текстовый канал об изменениях голосовых каналов
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     let newUserChannel = newMember.voiceChannel
     let oldUserChannel = oldMember.voiceChannel
 
-
+    //Когда подключен к голосовому каналу
     if(oldUserChannel === undefined && newUserChannel !== undefined) {
         client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name);
     } 
+    //Когда сменил голосовой канал один на другой
     else if (newUserChannel != oldUserChannel && newUserChannel !== undefined && oldUserChannel !== undefined){
         client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name);
     }
+    //Когда отключился от голосового канала
     else if(oldUserChannel !== undefined && newUserChannel === undefined){
         client.channels.get('353436958724456448').send('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name);
     } 
+});
+
+//Докладываем в специальный текстовый канал об изменениях ролей
+client.on('roleUpdate', (oldRole, newRole) => {
+
+    client.channels.get('353436958724456448').send('У пользователя: '+ newMember.user +'\nдобавлена роль:  '+ newRole.name);
+    client.channels.get('353436958724456448').send('У пользователя: '+ oldRole.user +'\nудалена роль:  '+ oldRole.name);
+
 });
 
 
