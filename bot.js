@@ -82,11 +82,13 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
     if(oldUserChannel === undefined && newUserChannel !== undefined) {
         client.channels.get('353436958724456448').send('Пользователь'+ newMember.user +'\nподключился к каналу  '+ newUserChannel.name);
-    } else if(newUserChannel === undefined){
-        client.channels.get('353436958724456448').send('Пользователь '+ newUserChannel.user + '\nпокинул канал  '+ oldUserChannel.name);
-    } else if (oldUserChannel != newUserChannel){
-        client.channels.get('353436958724456448').send('Пользователь '+ newUserChannel.user + '\nперешёл из голосового канала '+ oldUserChannel.name + ' в канал  ' + newUserChannel.name);
+    } 
+    else if (oldUserChannel != newUserChannel){
+        client.channels.get('353436958724456448').send('Пользователь '+ newUserChannel.user + '\nперешёл из голосового канала '+ oldUserChannel.name + '\nв канал  ' + newUserChannel.name);
     }
+    else if(newUserChannel === undefined){
+        client.channels.get('353436958724456448').send('Пользователь '+ oldUserChannel.user + '\nпокинул канал  '+ oldUserChannel.name);
+    } 
 });
 
 
