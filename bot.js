@@ -86,7 +86,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     else if (oldUserChannel != newUserChannel){
         client.channels.get('353436958724456448').send('Пользователь '+ newUserChannel.user + '\nперешёл из голосового канала '+ oldUserChannel.name + '\nв канал  ' + newUserChannel.name);
     }
-    else if(newUserChannel === undefined){
+    else if(oldUserChannel !== undefined && newUserChannel === undefined){
         client.channels.get('353436958724456448').send('Пользователь '+ oldUserChannel.user + '\nпокинул канал  '+ oldUserChannel.name);
     } 
 });
