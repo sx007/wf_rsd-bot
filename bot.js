@@ -93,15 +93,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } 
 });
 
-//Докладываем в специальный текстовый канал об изменениях ролей
-client.on('roleUpdate', (oldRole, newRole) => {
-
-    client.channels.get('353436958724456448').send(`Role Updated: ${newRole.name}`);
-    client.channels.get('353436958724456448').send(`Role Updated: ${oldRole.name}`);
-    //client.channels.get('353436958724456448').send('У пользователя: '+ newMember.user +'\nдобавлена роль:  '+ newRole.name);
-    //client.channels.get('353436958724456448').send('У пользователя: '+ oldRole.user +'\nудалена роль:  '+ oldRole.name);
-
-});
 
 
 client.login(process.env.BOT_TOKEN);
