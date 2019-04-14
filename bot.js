@@ -81,34 +81,16 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 
     if(oldUserChannel === undefined && newUserChannel !== undefined) {
-        client.channels.get('353436958724456448').send('Пользователь'+ newMember.user +'\nподключился к каналу  '+ newUserChannel.name);
+        client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name);
     } 
     else if (newUserChannel != oldUserChannel && newUserChannel !== undefined && oldUserChannel !== undefined){
-        client.channels.get('353436958724456448').send('Пользователь '+ newUserChannel.user + '\nперешёл из голосового канала '+ oldUserChannel.name + '\nв канал  ' + newUserChannel.name);
+        client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name);
     }
     else if(oldUserChannel !== undefined && newUserChannel === undefined){
-        client.channels.get('353436958724456448').send('Пользователь '+ oldUserChannel.user + '\nпокинул канал  '+ oldUserChannel.name);
+        client.channels.get('353436958724456448').send('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name);
     } 
 });
 
-
-
-
-
-
-/*
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-let newUserChannel = newMember.voiceChannel
-let oldUserChannel = oldMember.voiceChannel
-
-
-if(!oldUserChannel && newUserChannel) {
-
-    client.channels.get('353436958724456448').send("Пользователь перешёл из голосового канала " + oldUserChannel.name + " в канал " 
-            + newUserChannel.name);
-}
-});
-*/
 
 
 client.login(process.env.BOT_TOKEN);
