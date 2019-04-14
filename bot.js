@@ -76,6 +76,28 @@ client.on('message', message => {
 });
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let newUserChannel = newMember.voiceChannel
+    let oldUserChannel = oldMember.voiceChannel
+
+
+    if(oldUserChannel === undefined && newUserChannel !== undefined) {
+
+        client.channels.get('353436958724456448').send('Пользователь подключился к каналу');
+
+    } else if(newUserChannel === undefined){
+
+        client.channels.get('353436958724456448').send('Пользователь покинул канал');
+
+    }
+});
+
+
+
+
+
+
+/*
+client.on('voiceStateUpdate', (oldMember, newMember) => {
 let newUserChannel = newMember.voiceChannel
 let oldUserChannel = oldMember.voiceChannel
 
@@ -86,4 +108,7 @@ if(!oldUserChannel && newUserChannel) {
             + newUserChannel.name);
 }
 });
+*/
+
+
 client.login(process.env.BOT_TOKEN);
