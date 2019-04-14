@@ -92,5 +92,4 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 
 
-
 client.login(process.env.BOT_TOKEN);
