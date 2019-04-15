@@ -116,10 +116,10 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             }
  
             let updateNickname = new Discord.RichEmbed()
-            .setTitle('**[UPDATE MEMBER NICKNAME]**')
+            .setTitle('**[ПОЛЬЗОВАТЕЛЬ СМЕНИЛ НИКНЕЙМ]**')
             .setThumbnail(userAvatar)
             .setColor('BLUE')
-            .setDescription(`**\n**:spy: Successfully \`\`CHANGE\`\` Member Nickname.\n\n**User:** ${oldMember} (ID: ${oldMember.id})\n**Old Nickname:** ${oldNM}\n**New Nickname:** ${newNM}\n**By:** <@${userID}> (ID: ${userID})`)
+            .setDescription(`**\n**:spy: Успешно \`\`СМЕНИЛ\`\` свой никнейм пользователь \n\n**User:** ${oldMember} (ID: ${oldMember.id})\n**Old Nickname:** ${oldNM}\n**New Nickname:** ${newNM}\n**By:** <@${userID}> (ID: ${userID})`)
             .setTimestamp()
             .setFooter(oldMember.guild.name, oldMember.guild.iconURL)
  
@@ -129,10 +129,10 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             let role = newMember.roles.filter(r => !oldMember.roles.has(r.id)).first();
  
             let roleAdded = new Discord.RichEmbed()
-            .setTitle('**[ADDED ROLE TO MEMBER]**')
+            .setTitle('**[ДОБАВЛЕНА РОЛЬ ПОЛЬЗОВАТЕЛЮ]**')
             .setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**\n**:white_check_mark: Successfully \`\`ADDED\`\` Role to **${oldMember.user.username}**\n\n**User:** <@${oldMember.id}> (ID: ${oldMember.user.id})\n**Role:** \`\`${role.name}\`\` (ID: ${role.id})\n**By:** <@${userID}> (ID: ${userID})`)
+            .setDescription(`**\n**:white_check_mark: Успешно \`\`ДОБАВЛЕНА\`\` роль для **${oldMember.user.username}**\n\n**Пользователь:** <@${oldMember.id}> (ID: ${oldMember.user.id})\n**Роль:** \`\`${role.name}\`\` (ID: ${role.id})\n**Добавил:** <@${userID}> (ID: ${userID})`)
             .setTimestamp()
             .setFooter(userTag, userAvatar)
  
@@ -142,27 +142,16 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             let role = oldMember.roles.filter(r => !newMember.roles.has(r.id)).first();
  
             let roleRemoved = new Discord.RichEmbed()
-            .setTitle('**[REMOVED ROLE FROM MEMBER]**')
+            .setTitle('**[УДАЛЕНА РОЛЬ У ПОЛЬЗОВАТЕЛЯ]**')
             .setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
-            .setDescription(`**\n**:negative_squared_cross_mark: Successfully \`\`REMOVED\`\` Role from **${oldMember.user.username}**\n\n**User:** <@${oldMember.user.id}> (ID: ${oldMember.id})\n**Role:** \`\`${role.name}\`\` (ID: ${role.id})\n**By:** <@${userID}> (ID: ${userID})`)
+            .setDescription(`**\n**:negative_squared_cross_mark: Успешно \`\`УДАЛЕНА\`\` роль у **${oldMember.user.username}**\n\n**Пользователь:** <@${oldMember.user.id}> (ID: ${oldMember.id})\n**Роль:** \`\`${role.name}\`\` (ID: ${role.id})\n**By:** <@${userID}> (ID: ${userID})`)
             .setTimestamp()
             .setFooter(userTag, userAvatar)
  
             logChannel.send(roleRemoved);
         }
     })
-    if(oldMember.guild.owner.user.id !== newMember.guild.owner.user.id) {
-        let newOwner = new Discord.RichEmbed()
-        .setTitle('**[UPDATE GUILD OWNER]**')
-        .setThumbnail(oldMember.guild.iconURL)
-        .setColor('GREEN')
-        .setDescription(`**\n**:white_check_mark: Successfully \`\`TRANSFER\`\` The Owner Ship.\n\n**Old Owner:** <@${oldMember.user.id}> (ID: ${oldMember.user.id})\n**New Owner:** <@${newMember.user.id}> (ID: ${newMember.user.id})`)
-        .setTimestamp()
-        .setFooter(oldMember.guild.name, oldMember.guild.iconURL)
- 
-        logChannel.send(newOwner);
-    }
 });
 
 client.login(process.env.BOT_TOKEN);
