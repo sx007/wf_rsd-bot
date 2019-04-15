@@ -93,44 +93,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } 
 });
 
-client.on('guildMemberupdate', (oldMember, newMember) => {
-    const messagechannel = oldMember.guild.channels.find(r => r.name === 'Name of the channel where the announcement should be sent');
-    if (!messagechannel) return 'Channel does not exist!';
-
-    if (oldMember.roles.size < newMember.roles.size) {
-        const embed = new Discord.RichEmbed()
-            .setColor('ORANGE')
-            .setTimestamp()
-            .setAuthor('Role assigned')
-            .addField(`📎 Member:`, `${oldMember.user.tag} (${oldMember.id})`);
-
-        for (const role of newMember.roles.map(x => x.id)) {
-            if (!oldMember.roles.has(role)) {
-                embed.addField(`📥 Role(s):`, `${oldMember.guild.roles.get(role).name}`);
-            }
-        }
-        messagechannel.send({
-            embed
-        });
-    }
-
-    if (oldMember.roles.size > newMember.roles.size) {
-        const embed = new Discord.RichEmbed()
-            .setColor('ORANGE')
-            .setTimestamp()
-            .setAuthor('Role removed')
-            .addField(`📎 Member`, `${oldMember.user.tag} (${oldMember.id})`);
-
-        for (const role of oldMember.roles.map(x => x.id)) {
-            if (!newMember.roles.has(role)) {
-                embed.addField(`📥 Role(s):`, `${oldMember.guild.roles.get(role).name}`);
-            }
-        }
-        messagechannel.send({
-            embed
-        });
-    }
-});
 
 client.on('guildMemberupdate', (oldMember, newMember) => {
     const messagechannel = oldMember.guild.channels.find(r => r.name === 'system');
