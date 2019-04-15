@@ -119,9 +119,9 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[СМЕНИЛ НИКНЕЙМ]**')
             .setThumbnail(userAvatar)
             .setColor('BLUE')
-            .setDescription(`**\n**:spy: Успешно \`\`СМЕНИЛ\`\` свой никнейм пользователь \n\n**User:** ${oldMember} (ID: ${oldMember.id})\n**Старый ник:** ${oldNM}\n**Новый ник:** ${newNM}\n**Сменил:** <@${userID}> (ID: ${userID})`)
+            .setDescription(`**\n**:spy: Успешно сменил никнейм\n\n**Пользователь:** ${oldMember}\n(ID: ${oldMember.id})\n**Старый ник:** ${oldNM}\n**Новый ник:** ${newNM}\n**Сменил:** <@${userID}>\n(ID: ${userID})`)
             .setTimestamp()
-            .setFooter(oldMember.guild.name, oldMember.guild.iconURL)
+            //.setFooter(oldMember.guild.name, oldMember.guild.iconURL)
  
             logChannel.send(updateNickname);
         }
@@ -132,9 +132,9 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**\n**:white_check_mark: Успешно \`\`ДОБАВЛЕНА\`\` роль для **${oldMember.user.username}**\n\n**Пользователь:** <@${oldMember.id}> (ID: ${oldMember.user.id})\n**Роль:** \`\`${role.name}\`\` (ID: ${role.id})\n**Добавил:** <@${userID}> (ID: ${userID})`)
+            .setDescription(`**\n**:white_check_mark: Роль успешно добавлена.\n\n**Пользователь:** <@${oldMember.id}>\n(ID: ${oldMember.user.id})\n**Роль:** \`\`<@${role.name}>\`\`\n(ID: ${role.id})\n**Добавил:** <@${userID}>\n(ID: ${userID})`)
             .setTimestamp()
-            .setFooter(userTag, userAvatar)
+            //.setFooter(userTag, userAvatar)
  
             logChannel.send(roleAdded);
         }
@@ -145,9 +145,9 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
-            .setDescription(`**\n**:negative_squared_cross_mark: Успешно \`\`УДАЛЕНА\`\` роль у **${oldMember.user.username}**\n\n**Пользователь:** <@${oldMember.user.id}> (ID: ${oldMember.id})\n**Роль:** \`\`${role.name}\`\` (ID: ${role.id})\n**Удалил:** <@${userID}> (ID: ${userID})`)
+            .setDescription(`**\n**:negative_squared_cross_mark: Роль успешно удалена.\n\n**Пользователь:** <@${oldMember.user.id}>\n(ID: ${oldMember.id})\n**Роль:** \`\`<@${role.name}>\`\`\n(ID: ${role.id})\n**Удалил:** <@${userID}> (ID: ${userID})`)
             .setTimestamp()
-            .setFooter(userTag, userAvatar)
+            //.setFooter(userTag, userAvatar)
  
             logChannel.send(roleRemoved);
         }
