@@ -119,7 +119,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[СМЕНИЛ НИКНЕЙМ]**')
             .setThumbnail(userAvatar)
             .setColor('BLUE')
-            .setDescription(`**\n**:spy: Успешно сменил никнейм\n\n**Пользователь:** ${oldMember}\n(ID: ${oldMember.id})\n**Старый ник:** ${oldNM}\n**Новый ник:** ${newNM}\n**Сменил:** <@${userID}>\n(ID: ${userID})`)
+            .setDescription(`**\n**:spy: Успешно сменил никнейм\n\n**Пользователь:**\n ${oldMember}\n(ID: ${oldMember.id})\n\n**Старый ник:**\n ${oldNM}\n**Новый ник:**\n ${newNM}\n\n**Сменил:**\n <@${userID}>\n(ID: ${userID})`)
             .setTimestamp()
             //.setFooter(oldMember.guild.name, oldMember.guild.iconURL)
  
@@ -132,7 +132,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**\n**:white_check_mark: Роль успешно добавлена.\n\n**Пользователь:** <@${oldMember.id}>\n(ID: ${oldMember.user.id})\n**Роль:** \`\`<@${role.name}>\`\`\n(ID: ${role.id})\n**Добавил:** <@${userID}>\n(ID: ${userID})`)
+            .setDescription(`**\n**:white_check_mark: Роль успешно добавлена.\n\n**Пользователь:**\n <@${oldMember.id}>\n(ID: ${oldMember.user.id})\n\n**Роль:**\n <@${role.name}>\n(ID: ${role.id})\n\n**Добавил:**\n <@${userID}>\n(ID: ${userID})`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
@@ -145,7 +145,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
-            .setDescription(`**\n**:negative_squared_cross_mark: Роль успешно удалена.\n\n**Пользователь:** <@${oldMember.user.id}>\n(ID: ${oldMember.id})\n**Роль:** \`\`<@${role.name}>\`\`\n(ID: ${role.id})\n**Удалил:** <@${userID}> (ID: ${userID})`)
+            .setDescription(`**\n**:negative_squared_cross_mark: Роль успешно удалена.\n\n**Пользователь:**\n <@${oldMember.user.id}>\n(ID: ${oldMember.id})\n\n**Роль:**\n <@${role.name}>\n(ID: ${role.id})\n\n**Удалил:**\n <@${userID}> (ID: ${userID})`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
