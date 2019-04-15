@@ -102,7 +102,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
         var userID = logs.entries.first().executor.id;
         var userAvatar = logs.entries.first().executor.avatarURL;
         var userTag = logs.entries.first().executor.tag;
- 
+         //Отслеживаем изменение в никнейме пользователя
         if(oldMember.nickname !== newMember.nickname) {
             if(oldMember.nickname === null) {
                 var oldNM = '\`\`По умолчанию\`\`';
@@ -114,17 +114,18 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             }else {
                 var newNM = newMember.nickname;
             }
- 
+            //Вывод сообщения о смене ника
             let updateNickname = new Discord.RichEmbed()
             .setTitle('**[СМЕНИЛ НИКНЕЙМ]**')
             //.setThumbnail(userAvatar)
             .setColor('BLUE')
-            .setDescription(`**\n**:spy: Успешно сменил никнейм\n\n**Пользователь:**\n ${oldMember})\n\n**Старый ник:**\n ${oldNM}\n**Новый ник:**\n ${newNM}\n\n**Сменил:**\n <@${userID}>`)
+            .setDescription(`**\n**\n**Пользователь сменивший ник:**\n ${oldMember}л\n\n**Старый ник:**\n ${oldNM}\n**Новый ник:**\n ${newNM}\n\n**Сменил:**\n <@${userID}>`)
             .setTimestamp()
             //.setFooter(oldMember.guild.name, oldMember.guild.iconURL)
  
             logChannel.send(updateNickname);
         }
+        //Информируем о добавлении роли пользователю
         if(oldMember.roles.size < newMember.roles.size) {
             let role = newMember.roles.filter(r => !oldMember.roles.has(r.id)).first();
  
@@ -132,12 +133,13 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**\n**:white_check_mark: Роль успешно добавлена.\n\n**Пользователь:**\n <@${oldMember.id}>\n\n**Роль:**\n __${role.name}__\n\n**Добавил:**\n <@${userID}>`)
+            .setDescription(`**\n**\n**Пользователь:**\n <@${oldMember.id}>\n\n**Роль:**\n __${role.name}__\n\n**Добавил:**\n <@${userID}>`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
             logChannel.send(roleAdded);
         }
+        //Информируем об удалении роли с пользователя
         if(oldMember.roles.size > newMember.roles.size) {
             let role = oldMember.roles.filter(r => !newMember.roles.has(r.id)).first();
  
@@ -145,7 +147,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
-            .setDescription(`**\n**:negative_squared_cross_mark: Роль успешно удалена.\n\n**Пользователь:**\n <@${oldMember.user.id}>\n\n**Роль:**\n __${role.name}__\n\n**Удалил:**\n <@${userID}>`)
+            .setDescription(`**\n**\n**Пользователь:**\n <@${oldMember.user.id}>\n\n**Роль:**\n __${role.name}__\n\n**Удалил:**\n <@${userID}>`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
