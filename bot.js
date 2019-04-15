@@ -132,7 +132,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**\n**:white_check_mark: Роль успешно добавлена.\n\n**Пользователь:**\n <@${oldMember.id}>\n(ID: ${oldMember.user.id})\n\n**Роль:**\n <@${role.id}>\n(ID: ${role.id})\n\n**Добавил:**\n <@${userID}>\n(ID: ${userID})`)
+            .setDescription(`**\n**:white_check_mark: Роль успешно добавлена.\n\n**Пользователь:**\n <@${oldMember.id}>\n(ID: ${oldMember.user.id})\n\n**Роль:**\n '\`\`${role.name}'\`\`\n(ID: ${role.id})\n\n**Добавил:**\n <@${userID}>\n(ID: ${userID})`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
@@ -145,7 +145,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
-            .setDescription(`**\n**:negative_squared_cross_mark: Роль успешно удалена.\n\n**Пользователь:**\n <@${oldMember.user.id}>\n(ID: ${oldMember.id})\n\n**Роль:**\n <@${role.id}>\n(ID: ${role.id})\n\n**Удалил:**\n <@${userID}>\n(ID: ${userID})`)
+            .setDescription(`**\n**:negative_squared_cross_mark: Роль успешно удалена.\n\n**Пользователь:**\n <@${oldMember.user.id}>\n(ID: ${oldMember.id})\n\n**Роль:**\n '\`\`${role.name}'\`\`\n(ID: ${role.id})\n\n**Удалил:**\n <@${userID}>\n(ID: ${userID})`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
