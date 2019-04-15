@@ -119,7 +119,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[СМЕНИЛ НИКНЕЙМ]**')
             //.setThumbnail(userAvatar)
             .setColor('BLUE')
-            .setDescription(`**\n**\n**Пользователь сменивший ник:**\n ${oldMember}\n\n**Старый ник:**\n ${oldNM}\n**Новый ник:**\n ${newNM}\n\n**Сменил:**\n <@${userID}>\n\n`)
+            .setDescription(`**\n****Пользователь сменивший ник:**\n ${oldMember}\n\n**Старый ник:**\n ${oldNM}\n**Новый ник:**\n ${newNM}\n\n**Сменил:**\n <@${userID}>`)
             .setTimestamp()
             //.setFooter(oldMember.guild.name, oldMember.guild.iconURL)
  
@@ -133,7 +133,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**\n**\n**Пользователь:**\n <@${oldMember.id}>\n\n**Роль:**\n __${role.name}__\n\n**Добавил:**\n <@${userID}>\n\n`)
+            .setDescription(`**\n****Кому добавили:**\n <@${oldMember.id}>\n\n**Роль:**\n __${role.name}__\n\n**Кто добавил:**\n <@${userID}>`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
@@ -147,7 +147,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
-            .setDescription(`**\n**\n**Пользователь:**\n <@${oldMember.user.id}>\n\n**Роль:**\n __${role.name}__\n\n**Удалил:**\n <@${userID}>\n\n`)
+            .setDescription(`**\n****У кого удалили:**\n <@${oldMember.user.id}>\n\n**Роль:**\n __${role.name}__\n\n**Кто удалил:**\n <@${userID}>`)
             .setTimestamp()
             //.setFooter(userTag, userAvatar)
  
