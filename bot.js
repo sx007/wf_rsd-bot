@@ -29,6 +29,26 @@ client.on('message', message => {
     if(commandIS("привет", message)){
         message.reply(' привет!');
     }
+    /* погода */
+    if(commandIS("инфа", message)){
+        //message.reply(' за нами следят!');
+        
+        let request = require('request');
+        let apiKey = 'b1f6b0a1ea9e10feb04eb3a2de2ad2b9';
+        let city = 'Khabarovsk';
+        let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+
+        request(url, function (err, response, body) {
+        if(err){
+          console.log('error:', error);
+        } else {
+          let weather = JSON.parse(body)
+          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+          console.log(message);
+        }
+        });
+
+    }
     if(commandIS("команды", message)){
         message.channel.send("Доступно `для смертных`: !привет\n`Для модеров:` !скажи, !удалить, !кик");
     }
