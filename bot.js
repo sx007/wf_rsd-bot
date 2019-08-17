@@ -92,11 +92,25 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } 
     //Когда сменил голосовой канал один на другой
     else if (newUserChannel != oldUserChannel && newUserChannel !== undefined && oldUserChannel !== undefined){
-        client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name);
+        //ниже старый вариант
+        //client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name);
+        let embed = new Discord.RichEmbed()
+        .setColor(0x002D5F)
+        //.setTitle('Подключился к каналу')
+        .setDescription('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name)
+        .setTimestamp()
+        client.channels.get('353436958724456448').send(embed);
     }
     //Когда отключился от голосового канала
     else if(oldUserChannel !== undefined && newUserChannel === undefined){
-        client.channels.get('353436958724456448').send('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name);
+        //ниже старый вариант
+        //client.channels.get('353436958724456448').send('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name);
+        let embed = new Discord.RichEmbed()
+        .setColor(0x5F0000)
+        //.setTitle('Подключился к каналу')
+        .setDescription('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name)
+        .setTimestamp()
+        client.channels.get('353436958724456448').send(embed);
     } 
 });
 
