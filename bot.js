@@ -86,7 +86,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         .setColor(0x00AE86)
         .addField("Заголовок", "Описание")
         .setTimestamp()
-        if(!args[0]) return message.channel.get('353436958724456448').send(embed);
+        message.channel.get('353436958724456448').send(embed);
     } 
     //Когда сменил голосовой канал один на другой
     else if (newUserChannel != oldUserChannel && newUserChannel !== undefined && oldUserChannel !== undefined){
