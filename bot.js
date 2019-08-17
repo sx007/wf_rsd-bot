@@ -81,10 +81,11 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
     //Когда подключен к голосовому каналу
     if(oldUserChannel === undefined && newUserChannel !== undefined) {
-        client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name);
+        //ниже старый вариант
+        //client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name);
         let embed = new Discord.RichEmbed()
-        .setColor(0x00AE86)
-        .setTitle('Подключился к каналу')
+        .setColor(0x24369)
+        //.setTitle('Подключился к каналу')
         .setDescription('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name)
         .setTimestamp()
         client.channels.get('353436958724456448').send(embed);
