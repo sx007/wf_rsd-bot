@@ -178,14 +178,14 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
     })
 });
 
-bot.on("guildMemberRemove", member => {
+client.on('serverNewMember', member => {
     let embed = new Discord.RichEmbed()
     .setColor(0xffffff)
     //.setTitle('Подключился к каналу')
-    .setDescription('Пользователь: ' + member.user.username + ' покинул сервер')
+    .setDescription('Пользователь: ' + member.user.username + ' только что зашёл на сервер')
     .setTimestamp()
     client.channels.get('353436958724456448').send(embed);
-  });
+});
 
 
 client.login(process.env.BOT_TOKEN);
