@@ -85,7 +85,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         //client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name);
         let embed = new Discord.RichEmbed()
         .setColor(0x005F31)
-        .setImage(newMember.user.avatarURL)
+        .setThumbnail(newMember.user.avatarURL)
         //.setTitle('Подключился к каналу')
         .setDescription('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name)
         .setTimestamp()
