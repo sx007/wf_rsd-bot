@@ -139,7 +139,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             //Вывод сообщения о смене ника
             let updateNickname = new Discord.RichEmbed()
             .setTitle('**[СМЕНИЛ НИКНЕЙМ]**')
-            .setThumbnail(userAvatar)
+            //.setThumbnail(newMember.user.avatarURL)
             .setColor('BLUE')
             .setDescription(`**Пользователь сменивший ник:**\n ${oldMember}\n\n**Старый ник:**\n ${oldNM}\n**Новый ник:**\n ${newNM}\n\n**Сменил:**\n <@${userID}>`)
             .setTimestamp()
@@ -153,7 +153,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
  
             let roleAdded = new Discord.RichEmbed()
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
-            .setThumbnail(oldMember.guild.iconURL)
+            //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
             .setDescription(`**Кому добавили:**\n <@${oldMember.id}>\n\n**Роль:**\n __${role.name}__\n\n**Кто добавил:**\n <@${userID}>`)
             .setTimestamp()
@@ -167,7 +167,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
  
             let roleRemoved = new Discord.RichEmbed()
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
-            .setThumbnail(oldMember.guild.iconURL)
+            //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
             .setDescription(`**У кого удалили:**\n <@${oldMember.user.id}>\n\n**Роль:**\n __${role.name}__\n\n**Кто удалил:**\n <@${userID}>`)
             .setTimestamp()
