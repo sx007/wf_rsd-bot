@@ -184,7 +184,7 @@ client.on('guildMemberAdd', member => {
     
     let NewUserServer = new Discord.RichEmbed()
     .setTitle('**[Новый пользователь]**')
-    .setColor(0xffffff)
+    .setColor(0xFDFDFD)
     .setDescription(`Пользователь ${member} только что зашёл на сервер`)
     .setTimestamp()
 
@@ -195,13 +195,13 @@ client.on('guildMemberRemove', member => {
 	const channel = member.guild.channels.find(ch => ch.name === 'system');
     if (!channel) return;
     
-    let NewUserServer = new Discord.RichEmbed()
+    let OldUserServer = new Discord.RichEmbed()
     .setTitle('**[Покинул пользователь]**')
-    .setColor(0xffffff)
+    .setColor(0xFDFDFD)
     .setDescription(`Пользователь ${member} покинул наш сервер`)
     .setTimestamp()
 
-    channel.send(NewUserServer);
+    channel.send(OldUserServer);
 });
 
 client.login(process.env.BOT_TOKEN);
