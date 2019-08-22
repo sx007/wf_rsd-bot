@@ -183,15 +183,25 @@ client.on('guildMemberAdd', member => {
     if (!channel) return;
     
     let NewUserServer = new Discord.RichEmbed()
-    .setTitle('**[УДАЛЕНА РОЛЬ]**')
-    //.setThumbnail(oldMember.guild.iconURL)
-    .setColor('white')
+    .setTitle('**[Новый пользователь]**')
+    .setColor(0xffffff)
     .setDescription(`Пользователь ${member} только что зашёл на сервер`)
     .setTimestamp()
-    //.setFooter(userTag, userAvatar)
 
     channel.send(NewUserServer);
 });
 
+client.on('guildMemberRemove', member => {
+	const channel = member.guild.channels.find(ch => ch.name === 'system');
+    if (!channel) return;
+    
+    let NewUserServer = new Discord.RichEmbed()
+    .setTitle('**[Покинул пользователь]**')
+    .setColor(0xffffff)
+    .setDescription(`Пользователь ${member} покинул наш сервер`)
+    .setTimestamp()
+
+    channel.send(NewUserServer);
+});
 
 client.login(process.env.BOT_TOKEN);
