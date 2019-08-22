@@ -178,13 +178,19 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
     })
 });
 
-client.on('serverNewMember', member => {
-    let embed = new Discord.RichEmbed()
-    .setColor(0xffffff)
-    //.setTitle('Подключился к каналу')
-    .setDescription('Пользователь: ' + member.user.username + ' только что зашёл на сервер')
+client.on('guildMemberAdd', member => {
+	const channel = member.guild.channels.find(ch => ch.name === 'system');
+    if (!channel) return;
+    
+    let NewUserServer = new Discord.RichEmbed()
+    .setTitle('**[УДАЛЕНА РОЛЬ]**')
+    //.setThumbnail(oldMember.guild.iconURL)
+    .setColor('white')
+    .setDescription(`Пользователь ${member} только что зашёл на сервер`)
     .setTimestamp()
-    client.channels.get('353436958724456448').send(embed);
+    //.setFooter(userTag, userAvatar)
+
+    channel.send(NewUserServer);
 });
 
 
