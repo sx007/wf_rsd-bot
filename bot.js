@@ -113,6 +113,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         //.setTitle('Подключился к каналу')
         .setDescription('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name)
         .setTimestamp(curDT)
+        .setFooter("Бот клана", "")
         client.channels.get('353436958724456448').send(embed);
     } 
 });
