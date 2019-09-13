@@ -1,5 +1,7 @@
 const Discord = require ('discord.js');
 const client = new Discord.Client();
+var dateN = new Date(); 
+var curDT = dateN.toISOString();
 /* Задаётся шаблон для команд */
 function commandIS(str, msg){
     return msg.content.toLowerCase().startsWith("!" + str);
@@ -88,7 +90,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         //.setThumbnail(newMember.user.avatarURL)
         //.setTitle('Подключился к каналу')
         .setDescription('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name)
-        .setTimestamp()
+        .setTimestamp(curDT)
         client.channels.get('353436958724456448').send(embed);
     } 
     //Когда сменил голосовой канал один на другой
@@ -99,7 +101,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         .setColor(0x002D5F)
         //.setTitle('Подключился к каналу')
         .setDescription('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name)
-        .setTimestamp()
+        .setTimestamp(curDT)
         client.channels.get('353436958724456448').send(embed);
     }
     //Когда отключился от голосового канала
@@ -110,7 +112,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         .setColor(0x5F0000)
         //.setTitle('Подключился к каналу')
         .setDescription('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name)
-        .setTimestamp()
+        .setTimestamp(curDT)
         client.channels.get('353436958724456448').send(embed);
     } 
 });
@@ -142,7 +144,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             //.setThumbnail(newMember.user.avatarURL)
             .setColor('BLUE')
             .setDescription(`**Пользователь сменивший ник:**\n ${oldMember}\n\n**Старый ник:**\n ${oldNM}\n**Новый ник:**\n ${newNM}\n\n**Сменил:**\n <@${userID}>`)
-            .setTimestamp()
+            .setTimestamp(curDT)
             //.setFooter(oldMember.guild.name, oldMember.guild.iconURL)
  
             logChannel.send(updateNickname);
@@ -156,7 +158,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
             .setDescription(`**Кому добавили:**\n <@${oldMember.id}>\n\n**Роль:**\n __${role.name}__\n\n**Кто добавил:**\n <@${userID}>`)
-            .setTimestamp()
+            .setTimestamp(curDT)
             //.setFooter(userTag, userAvatar)
  
             logChannel.send(roleAdded);
@@ -170,14 +172,14 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
             .setDescription(`**У кого удалили:**\n <@${oldMember.user.id}>\n\n**Роль:**\n __${role.name}__\n\n**Кто удалил:**\n <@${userID}>`)
-            .setTimestamp()
+            .setTimestamp(curDT)
             //.setFooter(userTag, userAvatar)
  
             logChannel.send(roleRemoved);
         }
     })
 });
-
+//Сообщаем о новом пользователе на сервере
 client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.find(ch => ch.name === 'system');
     if (!channel) return;
@@ -186,11 +188,11 @@ client.on('guildMemberAdd', member => {
     .setTitle('**[Новый пользователь]**')
     .setColor(0xFDFDFD)
     .setDescription(`Пользователь ${member} только что зашёл на сервер`)
-    .setTimestamp()
+    .setTimestamp(curDT)
 
     channel.send(NewUserServer);
 });
-
+//Сообщаем о пользователе, который покинул сервер
 client.on('guildMemberRemove', member => {
 	const channel = member.guild.channels.find(ch => ch.name === 'system');
     if (!channel) return;
@@ -199,7 +201,7 @@ client.on('guildMemberRemove', member => {
     .setTitle('**[Покинул пользователь]**')
     .setColor(0xFDFDFD)
     .setDescription(`Пользователь ${member} покинул наш сервер`)
-    .setTimestamp()
+    .setTimestamp(curDT)
 
     channel.send(OldUserServer);
 });
