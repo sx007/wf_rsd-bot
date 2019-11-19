@@ -83,8 +83,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
     //Когда подключен к голосовому каналу
     if(oldUserChannel === undefined && newUserChannel !== undefined) {
-        //ниже старый вариант
-        //client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name);
         let embed = new Discord.RichEmbed()
         .setColor(0x005F31)
         //.setThumbnail(newMember.user.avatarURL)
@@ -96,8 +94,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     } 
     //Когда сменил голосовой канал один на другой
     else if (newUserChannel != oldUserChannel && newUserChannel !== undefined && oldUserChannel !== undefined){
-        //ниже старый вариант
-        //client.channels.get('353436958724456448').send('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name);
         let embed = new Discord.RichEmbed()
         .setColor(0x002D5F)
         //.setTitle('Подключился к каналу')
@@ -108,8 +104,6 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     }
     //Когда отключился от голосового канала
     else if(oldUserChannel !== undefined && newUserChannel === undefined){
-        //ниже старый вариант
-        //client.channels.get('353436958724456448').send('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name);
         let embed = new Discord.RichEmbed()
         .setColor(0x5F0000)
         //.setTitle('Подключился к каналу')
@@ -161,7 +155,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**Кому добавили:**\n <@${oldMember.id}>\nНик: ${oldMember.displayName}\n\n**Роль:**\n __${role.name}__\n\n**Кто добавил:**\n <@${userID}>`)
+            .setDescription(`**Кому добавили:**\n <@${oldMember.id}>\nНик: \`${oldMember.displayName}\`\n\n**Роль:**\n __${role.name}__\n\n**Кто добавил:**\n <@${userID}>`)
             .setTimestamp()
             .setFooter("Бот клана", "")
             //.setFooter(userTag, userAvatar)
@@ -176,7 +170,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('RED')
-            .setDescription(`**У кого удалили:**\n <@${oldMember.user.id}>\nНик: ${oldMember.displayName}\n\n**Роль:**\n __${role.name}__\n\n**Кто удалил:**\n <@${userID}>`)
+            .setDescription(`**У кого удалили:**\n <@${oldMember.user.id}>\nНик: \`${oldMember.displayName}\`\n\n**Роль:**\n __${role.name}__\n\n**Кто удалил:**\n <@${userID}>`)
             .setTimestamp()
             .setFooter("Бот клана", "")
             //.setFooter(userTag, userAvatar)
@@ -193,7 +187,7 @@ client.on('guildMemberAdd', member => {
     let NewUserServer = new Discord.RichEmbed()
     .setTitle('**[Новый пользователь]**')
     .setColor(0xFDFDFD)
-    .setDescription(`Пользователь ${member}\nНик: \`${member.displayName}\`\nтолько что зашёл на сервер`)
+    .setDescription(`Пользователь ${member}\nНик: \`${member.displayName}\`\n\nтолько что зашёл на сервер`)
     .setTimestamp()
     .setFooter("Бот клана", "")
 
@@ -207,7 +201,7 @@ client.on('guildMemberRemove', member => {
     let OldUserServer = new Discord.RichEmbed()
     .setTitle('**[Покинул пользователь]**')
     .setColor(0xFDFDFD)
-    .setDescription(`Пользователь ${member}\nНик: \`${member.displayName}\`\nпокинул наш сервер`)
+    .setDescription(`Пользователь ${member}\nНик: \`${member.displayName}\`\n\nпокинул наш сервер`)
     .setTimestamp()
     .setFooter("Бот клана", "")
 
