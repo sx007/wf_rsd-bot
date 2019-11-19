@@ -161,7 +161,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
             .setColor('GREEN')
-            .setDescription(`**Кому добавили:**\n <@${oldMember.id}>\n\n**Роль:**\n __${role.name}__\n\n**Кто добавил:**\n <@${userID}>`)
+            .setDescription('**Кому добавили:**\n' + oldMember.id + '\nНик: `'+ oldMember.displayName + '`\n\n**Роль:**\n'+ role.name +'\n\n**Кто добавил:**\n ' + userID)
             .setTimestamp()
             .setFooter("Бот клана", "")
             //.setFooter(userTag, userAvatar)
