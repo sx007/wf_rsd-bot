@@ -193,7 +193,7 @@ client.on('guildMemberAdd', member => {
     let NewUserServer = new Discord.RichEmbed()
     .setTitle('**[Новый пользователь]**')
     .setColor(0xFDFDFD)
-    .setDescription(`Пользователь ${member}\nНик: ${member.displayName}\nтолько что зашёл на сервер`)
+    .setDescription(`Пользователь ${member}\nНик: \`${member.displayName}\`\nтолько что зашёл на сервер`)
     .setTimestamp()
     .setFooter("Бот клана", "")
 
@@ -207,7 +207,7 @@ client.on('guildMemberRemove', member => {
     let OldUserServer = new Discord.RichEmbed()
     .setTitle('**[Покинул пользователь]**')
     .setColor(0xFDFDFD)
-    .setDescription(`Пользователь ${member}\nНик: ${member.displayName}\nпокинул наш сервер`)
+    .setDescription(`Пользователь ${member}\nНик: \`${member.displayName}\`\nпокинул наш сервер`)
     .setTimestamp()
     .setFooter("Бот клана", "")
 
