@@ -89,7 +89,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         .setColor(0x005F31)
         //.setThumbnail(newMember.user.avatarURL)
         //.setTitle('Подключился к каналу')
-        .setDescription('Пользователь: '+ newMember.user + '(' + newMember.displayName +')' +'\nподключился к каналу:  '+ newUserChannel.name)
+        .setDescription('Пользователь: '+ newMember.user + '\nНик: ' + newMember.displayName + '\nподключился к каналу:  '+ newUserChannel.name)
         .setTimestamp()
         .setFooter("Бот клана", "")
         client.channels.get('353436958724456448').send(embed);
@@ -101,7 +101,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         let embed = new Discord.RichEmbed()
         .setColor(0x002D5F)
         //.setTitle('Подключился к каналу')
-        .setDescription('Пользователь: '+ newMember.user + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name)
+        .setDescription('Пользователь: '+ newMember.user + '\nНик: ' + newMember.displayName + '\nперешёл из голосового канала:  '+ oldUserChannel.name + '\nв канал:  ' + newUserChannel.name)
         .setTimestamp()
         .setFooter("Бот клана", "")
         client.channels.get('353436958724456448').send(embed);
@@ -113,7 +113,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         let embed = new Discord.RichEmbed()
         .setColor(0x5F0000)
         //.setTitle('Подключился к каналу')
-        .setDescription('Пользователь: '+ oldMember.user + '\nпокинул канал:  '+ oldUserChannel.name)
+        .setDescription('Пользователь: '+ oldMember.user + '\nНик: ' + oldMember.displayName + '\nпокинул канал:  '+ oldUserChannel.name)
         .setTimestamp()
         .setFooter("Бот клана", "")
         client.channels.get('353436958724456448').send(embed);
