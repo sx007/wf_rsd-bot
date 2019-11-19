@@ -89,7 +89,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         .setColor(0x005F31)
         //.setThumbnail(newMember.user.avatarURL)
         //.setTitle('Подключился к каналу')
-        .setDescription('Пользователь: '+ newMember.user +'\nподключился к каналу:  '+ newUserChannel.name)
+        .setDescription('Пользователь: '+ newMember.user + '(' + newMember.name +')' +'\nподключился к каналу:  '+ newUserChannel.name)
         .setTimestamp()
         .setFooter("Бот клана", "")
         client.channels.get('353436958724456448').send(embed);
