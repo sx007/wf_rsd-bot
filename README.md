@@ -1,6 +1,6 @@
 ## Вступление:
 Данный бот создан исключительно в личных (некоммерческих) целях. 
-<img src="https://imgur.com/download/R3eV77L" alt="Logo Clan + Discord" />
+<img src="https://camo.githubusercontent.com/7b7d4532fc354d03ccabb8e423b141b49c1a3396/68747470733a2f2f696d6775722e636f6d2f646f776e6c6f61642f5233655637374c" alt="Logo Clan + Discord" />
 
 🖥<a href="https://vk.com/wf_rsd">Группа VK</a> клана
 
