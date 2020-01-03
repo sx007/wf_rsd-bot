@@ -27,22 +27,12 @@ client.on('ready', () => {
 
 
 
-const https = require('https')
-const options = {
-  hostname: 'api.warface.ru/rating/monthly?server=1',
-  port: 80,
-  method: 'GET'
-}
+let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+let response = await fetch(url);
 
-const req = https.request(options, res => {
-  console.log(`statusCode: ${res.statusCode}`)
-})
+let commits = await response.json(); // читаем ответ в формате JSON
 
-req.on('error', error => {
-  console.error(error)
-})
-
-req.end()
+onsole.log(commits[0].author.login);
 
 
 
