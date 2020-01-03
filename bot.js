@@ -41,6 +41,7 @@ request.get(options, (err, res, body) => {
     if (err) {
         return console.log(err);
     }
+    console.log('Status Code:', res);
     console.log(body);
 });
 
