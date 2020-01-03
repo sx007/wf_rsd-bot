@@ -29,7 +29,7 @@ client.on('ready', () => {
 
 var request = require('request');
 
-var url = 'https://api.github.com/users/rsp';
+var url = 'http://api.warface.ru/rating/monthly?server=1';
 
 request.get({
     url: url,
@@ -42,7 +42,7 @@ request.get({
       console.log('Status:', res.statusCode);
     } else {
       // data is already parsed as JSON:
-      console.log(data.html_url);
+      console.log(data.clan);
     }
 });
 
