@@ -27,14 +27,14 @@ client.on('ready', () => {
 
 const request = require('request');
 
-request.get('https://reqres.in/api/users', { json: true }, (err, res, body) => {
+request.get('http://api.warface.ru/rating/monthly?server=1', { json: true }, (err, res, body) => {
     if (err) {
         return console.log(err);
     }
 
     // print the users
     body.data.map(user => {
-        console.log(`${user.first_name} ${user.last_name}`);
+        console.log(`${user.clan} ${user.clan_leader}`);
     });
 });
 
