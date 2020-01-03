@@ -26,24 +26,15 @@ client.on('ready', () => {
 });
 
 
-var https = require('https');
-function httpsRequest() {
-    var options = {
-        hostname : 'api.stackexchange.com',
-        path : '/2.2/answers',
-        method : 'GET'
-    };
-    var req = https.request(options, (res) => {
-        res.on('data', function (data) {
-            console.dir(data);
-        });
-    });
-    req.on('error', function (e) {
-        console.error(e);
-    });
-    req.end(); // correct place
-}
-httpsRequest();
+var request = require('request');
+
+var URL = 'http://api.warface.ru/rating/monthly?server=1';
+
+request(URL, function (err, res, body) {
+    if (err) throw err;
+    console.log(body);
+    console.log(res.statusCode);
+});
 
 
 //const request = require('request');
