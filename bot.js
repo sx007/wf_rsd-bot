@@ -31,8 +31,11 @@ request('http://api.warface.ru/rating/monthly?server=1&clan=РезидентыВ
   console.error('error:', error); // Print the error if one occurred
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
   console.log('body:', body); // Print the HTML for the Google homepage.
-  var output = arr.filter(function(bodyx){return body.clan=="РезидентыВарфайс"});
-  console.log('testInfo:', output);
+  var jsonContent = JSON.parse(body);
+
+  console.log(
+    jsonContent.JSON.filter(({ clan }) => clan === 'РезидентыВарфайс')
+  );
   
 });
 
