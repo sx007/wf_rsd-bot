@@ -27,9 +27,23 @@ client.on('ready', () => {
 
 
 
-const response = await fetch('http://api.warface.ru/rating/monthly?server=1')
-const myJson = await response.json();
-console.log(JSON.stringify(myJson));
+const url = 'http://www.mocky.io/v2/5d9466142f000058008ff6b7'
+
+const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+}
+
+const response = await fetch(url, options)
+const results = await response.json()
+
+const queryItem = "555-5555"
+const filteredOrders = results.orders.filter(item => item.note === queryItem)
+
+console.log(filteredOrders)
 
 
 
