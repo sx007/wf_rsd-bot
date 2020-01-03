@@ -27,17 +27,37 @@ client.on('ready', () => {
 
 
 const request = require('request');
-request('http://api.warface.ru/rating/monthly?server=1&clan=%D0%A0%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D1%8B%D0%92%D0%B0%D1%80%D1%84%D0%B0%D0%B9%D1%81', function (error, response, body) {
-  console.error('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the HTML for the Google homepage.
+
+const options = {
+    url: 'http://api.warface.ru/rating/monthly?server=1&clan=%D0%A0%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D1%8B%D0%92%D0%B0%D1%80%D1%84%D0%B0%D0%B9%D1%81',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'User-Agent': 'Request',
+        'X-platform': 'Node'
+    }
+};
+
+request.get(options, (err, res, body) => {
+    if (err) {
+        return console.log(err);
+    }
+    console.log(body);
+});
+
+
+//const request = require('request');
+//request('http://api.warface.ru/rating/monthly?server=1&clan=%D0%A0%D0%B5%D0%B7%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D1%8B%D0%92%D0%B0%D1%80%D1%84%D0%B0%D0%B9%D1%81', function (error, response, body) {
+  //console.error('error:', error); // Print the error if one occurred
+  //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  //console.log('body:', body); // Print the HTML for the Google homepage.
   //var jsonContent = JSON.parse(body);
 
   //console.log(
   //  jsonContent.JSON.filter(({ clan }) => clan === 'РезидентыВарфайс')
   //);
   
-});
+//});
 
 
 
