@@ -27,23 +27,22 @@ client.on('ready', () => {
 
 
 
-const url = 'http://www.mocky.io/v2/5d9466142f000058008ff6b7'
-
+const https = require('https')
 const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
+  hostname: 'api.warface.ru/rating/monthly?server=1',
+  port: 80,
+  method: 'GET'
 }
 
-const response = await fetch(url, options)
-const results = await response.json()
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`)
+})
 
-const queryItem = "555-5555"
-const filteredOrders = results.orders.filter(item => item.note === queryItem)
+req.on('error', error => {
+  console.error(error)
+})
 
-console.log(filteredOrders)
+req.end()
 
 
 
