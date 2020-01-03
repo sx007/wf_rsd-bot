@@ -24,6 +24,19 @@ client.on('ready', () => {
   client.user.setPresence({ game: { name: 'Warface', type: 0 } })
    console.log("Бот успешно запущен!")
 });
+
+
+const request = require('request');
+request('https://www.google.com', function (error, response, body) {
+  console.error('error:', error); // Print the error if one occurred
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the HTML for the Google homepage.
+});
+
+
+
+
+
 /* команды сообщений */
 client.on('message', message => {
     var args = message.content.split(/[ ]+/);
