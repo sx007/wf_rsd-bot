@@ -26,25 +26,23 @@ client.on('ready', () => {
 });
 
 
-const request = require('request');
+const url = 'http://www.mocky.io/v2/5d9466142f000058008ff6b7'
 
 const options = {
-    url: 'http://api.warface.ru/rating/monthly?server=1',
     method: 'GET',
     headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36'
-    }
-};
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+}
 
-request.get(options, (err, res, body) => {
-    if (err) {
-        return console.log(err);
-    }
-    console.log('Status Code:', res);
-    console.log(body);
-});
+const response = await fetch(url, options)
+const results = await response.json()
+
+const queryItem = "555-5555"
+const filteredOrders = results.orders.filter(item => item.note === queryItem)
+
+console.log(filteredOrders)
 
 
 //const request = require('request');
