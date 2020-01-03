@@ -26,23 +26,24 @@ client.on('ready', () => {
 });
 
 
-const url = 'http://www.mocky.io/v2/5d9466142f000058008ff6b7'
-
-const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
+var https = require('https');
+function httpsRequest() {
+    var options = {
+        hostname : 'api.stackexchange.com',
+        path : '/2.2/answers',
+        method : 'GET'
+    };
+    var req = https.request(options, (res) => {
+        res.on('data', function (data) {
+            console.dir(data);
+        });
+    });
+    req.on('error', function (e) {
+        console.error(e);
+    });
+    req.end(); // correct place
 }
-
-const response = await fetch(url, options)
-const results = await response.json()
-
-const queryItem = "555-5555"
-const filteredOrders = results.orders.filter(item => item.note === queryItem)
-
-console.log(filteredOrders)
+httpsRequest();
 
 
 //const request = require('request');
