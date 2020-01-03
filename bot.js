@@ -27,13 +27,24 @@ client.on('ready', () => {
 
 
 
-let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
-let response = await fetch(url);
+var request = require('request');
 
-let commits = await response.json(); // читаем ответ в формате JSON
+var url = 'https://api.github.com/users/rsp';
 
-onsole.log(commits[0].author.login);
-
+request.get({
+    url: url,
+    json: true,
+    headers: {'User-Agent': 'request'}
+  }, (err, res, data) => {
+    if (err) {
+      console.log('Error:', err);
+    } else if (res.statusCode !== 200) {
+      console.log('Status:', res.statusCode);
+    } else {
+      // data is already parsed as JSON:
+      console.log(data.html_url);
+    }
+});
 
 
 /*
