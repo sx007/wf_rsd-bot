@@ -28,24 +28,12 @@ client.on('ready', () => {
 
 
 
-const request = require('request')
-     ,url = 'http://api.warface.ru/rating/monthly?server=1'
-
-request(url, (error, response, body)=> {
-  if (!error && response.statusCode === 200) {
-    const fbResponse = JSON.parse(body)
-    console.log("Got a response: ", fbResponse.clan)
-  } else {
-    console.log("Got an error: ", error, ", status code: ", response.statusCode)
-  }
-})
 
 
 
-/*
 var request = require('request');
 
-var url = 'https://api.github.com/users/rsp';
+var url = 'https://sx007.000webhostapp.com/api_wf_clan.php';
 
 request.get({
     url: url,
@@ -58,10 +46,10 @@ request.get({
       console.log('Status:', res.statusCode);
     } else {
       // data is already parsed as JSON:
-      console.log(data.html_url);
+      console.log(data.clan);
     }
 });
-*/
+
 
 /*
 const request = require('request');
