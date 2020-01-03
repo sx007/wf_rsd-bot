@@ -25,16 +25,20 @@ client.on('ready', () => {
    console.log("Бот успешно запущен!")
 });
 
+const request = require('request');
 
-var request = require('request');
+request.get('https://reqres.in/api/users', { json: true }, (err, res, body) => {
+    if (err) {
+        return console.log(err);
+    }
 
-var URL = 'http://api.warface.ru/rating/monthly?server=1';
-
-request(URL, function (err, res, body) {
-    if (err) throw err;
-    console.log(body);
-    console.log(res.statusCode);
+    // print the users
+    body.data.map(user => {
+        console.log(`${user.first_name} ${user.last_name}`);
+    });
 });
+
+
 
 
 //const request = require('request');
