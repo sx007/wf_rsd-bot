@@ -25,6 +25,18 @@ client.on('ready', () => {
    console.log("Бот успешно запущен!")
 });
 
+
+
+require('http').get('http://api.warface.ru/rating/monthly?server=1', (res) => {
+    res.setEncoding('utf8');
+    res.on('data', function (body) {
+        console.log(body);
+    });
+});
+
+
+
+/*
 const request = require('request');
 
 request.get('http://api.warface.ru/rating/monthly?server=1', { json: true }, (err, res, body) => {
@@ -37,7 +49,7 @@ request.get('http://api.warface.ru/rating/monthly?server=1', { json: true }, (er
         console.log(`${user.clan} ${user.clan_leader}`);
     });
 });
-
+*/
 
 
 
