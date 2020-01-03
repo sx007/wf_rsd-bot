@@ -27,12 +27,9 @@ client.on('ready', () => {
 
 
 
-require('http').get('http://api.warface.ru/rating/monthly?server=1', (res) => {
-    res.setEncoding('utf8');
-    res.on('data', function (body) {
-        console.log(body);
-    });
-});
+const response = await fetch('http://api.warface.ru/rating/monthly?server=1')
+const myJson = await response.json();
+console.log(JSON.stringify(myJson));
 
 
 
