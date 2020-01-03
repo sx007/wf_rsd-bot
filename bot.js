@@ -46,7 +46,7 @@ request.get({
       console.log('Status:', res.statusCode);
     } else {
       // data is already parsed as JSON:
-      console.log(data.clan);
+      console.log(data[0].clan);
     }
 });
 
