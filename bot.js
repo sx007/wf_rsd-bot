@@ -27,9 +27,25 @@ client.on('ready', () => {
 
 
 
+
+const request = require('request')
+     ,url = 'http://graph.facebook.com/517267866/?fields=picture'
+
+request(url, (error, response, body)=> {
+  if (!error && response.statusCode === 200) {
+    const fbResponse = JSON.parse(body)
+    console.log("Got a response: ", fbResponse.picture)
+  } else {
+    console.log("Got an error: ", error, ", status code: ", response.statusCode)
+  }
+})
+
+
+
+/*
 var request = require('request');
 
-var url = 'http://api.warface.ru/rating/monthly?server=1';
+var url = 'https://api.github.com/users/rsp';
 
 request.get({
     url: url,
@@ -42,10 +58,10 @@ request.get({
       console.log('Status:', res.statusCode);
     } else {
       // data is already parsed as JSON:
-      console.log(data.clan);
+      console.log(data.html_url);
     }
 });
-
+*/
 
 /*
 const request = require('request');
