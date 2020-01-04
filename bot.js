@@ -68,10 +68,10 @@ client.on('message', message => {
             const embed = new Discord.RichEmbed()
             .setTitle("Ежемесячный рейтинг клана")
             .setColor(0xFFF100)
-            .setDescription("This is the main body of text, it can hold 2048 characters.")
+            //.setDescription("This is the main body of text, it can hold 2048 characters.")
             .setFooter("Бот клана", "")
             .setTimestamp()
-            .addField("Название клана:", data.clan)
+            .addField("Название клана: **" + data.clan + "**")
             message.channel.send({embed});
             console.log(data.clan);
             }
