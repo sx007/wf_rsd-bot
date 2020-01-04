@@ -32,8 +32,8 @@ client.on('ready', () => {
 
 
 var request = require('request');
-
-var url = 'https://sx007.000webhostapp.com/api_wf_clan.php?clan=' + encodeURIComponent(РезидентыВарфайс);
+var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=РезидентыВарфайс";
+var url = encodeURI(uri);
 
 request.get({
     url: url,
