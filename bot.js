@@ -1,4 +1,5 @@
 const Discord = require ('discord.js');
+var request = require('request');
 const client = new Discord.Client();
 var dateN = new Date(); 
 var curDT = dateN.toISOString();
@@ -31,25 +32,8 @@ client.on('ready', () => {
 
 
 
-var request = require('request');
-var clanName = "РезидентыВарфайс";
-var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
-var url = encodeURI(uri);
 
-request.get({
-    url: url,
-    json: true,
-    headers: {'User-Agent': 'request'}
-  }, (err, res, data) => {
-    if (err) {
-      console.log('Error:', err);
-    } else if (res.statusCode !== 200) {
-      console.log('Status:', res.statusCode);
-    } else {
-      // data is already parsed as JSON:
-      console.log(data.clan);
-    }
-});
+
 
 
 
@@ -63,6 +47,35 @@ client.on('message', message => {
     }
     if(commandIS("команды", message)){
         message.channel.send("Доступно `для смертных`: !привет\n`Для модеров:` !скажи, !удалить, !кик");
+    }
+    //Рейтинг клана за месяц
+    if(commandIS("клан", message)){
+        var clanName = "РезидентыВарфайс";
+        var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
+        var url = encodeURI(uri);
+
+        request.get({
+            url: url,
+            json: true,
+            headers: {'User-Agent': 'request'}
+        }, (err, res, data) => {
+            if (err) {
+            console.log('Error:', err);
+            } else if (res.statusCode !== 200) {
+            console.log('Status:', res.statusCode);
+            } else {
+            // data is already parsed as JSON:
+            const embed = new Discord.RichEmbed()
+            .setTitle("Ежемесячный рейтинг клана")
+            .setColor(0xFFF100)
+            .setDescription("This is the main body of text, it can hold 2048 characters.")
+            .setFooter("Бот клана", "")
+            .setTimestamp()
+            .addField("Название клана:", data.clan)
+            message.channel.send({embed});
+            console.log(data.clan);
+            }
+        });
     }
     
     /* команда скажи */
