@@ -33,7 +33,7 @@ client.on('ready', () => {
 
 var request = require('request');
 
-var url = 'https://sx007.000webhostapp.com/api_wf_clan.php?clan=РезидентыВарфайс';
+var url = 'https://sx007.000webhostapp.com/api_wf_clan.php?clan=' + encodeURI(РезидентыВарфайс);
 
 request.get({
     url: url,
