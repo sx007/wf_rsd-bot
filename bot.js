@@ -68,10 +68,10 @@ client.on('message', message => {
             const embed = new Discord.RichEmbed()
             .setTitle("Ежемесячный рейтинг клана")
             .setColor(0xFFF100)
-            .setDescription("Название клана: **" + data.clan + "**")
+            .setDescription('*Название клана:* **' + data.clan + '**\n*Глава клана:* ' + data.clan_leader + '**\n*Бойцов в клане:* ' + data.members + '**\n*Лига:* ' + data.liga + '**\n*Очков за месяц:* ' + data.points + '**\n*Место в лиге:* ' + data.rank + '**\n*Изменение места:* ' + data.rank_change)
             .setFooter("Бот клана", "")
             .setTimestamp()
-            .addField("Название клана: **" + data.clan + "**")
+            //.addField("Название клана: **" + data.clan + "**")
             message.channel.send({embed});
             console.log(data.clan);
             }
