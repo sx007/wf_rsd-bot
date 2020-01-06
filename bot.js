@@ -48,7 +48,7 @@ client.on('message', message => {
             json: true,
             headers: {'User-Agent': 'request'}
         }, (err, res, data) => {
-            if(typeof data.code === 'undefined') {
+            if(data.code) {
                 console.log('Такого клана не найдено');
             }
             
