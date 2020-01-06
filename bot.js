@@ -39,7 +39,7 @@ client.on('message', message => {
     }
     //Рейтинг клана за месяц
     if(commandIS("клан", message)){
-        var clanName = "РезидентыВарфайз";
+        var clanName = "РезидентыВарфайс";
         var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
         var url = encodeURI(uri);
 
@@ -51,6 +51,7 @@ client.on('message', message => {
             //Проверяем ответ на наличие ключа code
             if(data.code == 0) {
                 console.log('Такого клана не найдено');
+                //Собираем RichEmbed сообщение
                 const embed = new Discord.RichEmbed()
                 .setTitle(":no_entry_sign: Ошибка")
                 .setColor(0xFFF100)
@@ -74,8 +75,6 @@ client.on('message', message => {
                     message.channel.send({embed});
                 }
             }
-            
-            
         });
     }
     
