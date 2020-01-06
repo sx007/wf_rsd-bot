@@ -39,7 +39,7 @@ client.on('message', message => {
     }
     //Рейтинг клана за месяц
     if(commandIS("клан", message)){
-        var clanName = "РезидентыВарфайс";
+        var clanName = "РезидентыВарфайз";
         var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
         var url = encodeURI(uri);
 
@@ -48,6 +48,10 @@ client.on('message', message => {
             json: true,
             headers: {'User-Agent': 'request'}
         }, (err, res, data) => {
+            if(typeof data.code === 'undefined') {
+                console.log('Такого клана не найдено');
+            }
+            
             if (err) {
             console.log('Error:', err);
             } else if (res.statusCode !== 200) {
