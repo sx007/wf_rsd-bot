@@ -47,25 +47,35 @@ client.on('message', message => {
             url: url,
             json: true,
             headers: {'User-Agent': 'request'}
-        }, (err, res, data) => {
+        }, (err, res, data) => {            
+            //Проверяем ответ на наличие ключа code
             if(data.code == 0) {
                 console.log('Такого клана не найдено');
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0xFFF100)
+                .setDescription('Такой клан не найден')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
+            } else {
+                if (err) {
+                    console.log('Error:', err);
+                } else if (res.statusCode !== 200) {
+                    console.log('Status:', res.statusCode);
+                } else {
+                    //Собираем RichEmbed сообщение
+                    const embed = new Discord.RichEmbed()
+                    .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                    .setColor(0xFFF100)
+                    .setDescription('`Название клана:`   **' + data.clan + '**\n`Глава клана:`  **' + data.clan_leader + '**\n`Бойцов в клане:`   **' + data.members + '**\n`Лига:`   **' + data.liga + '**\n`Место в лиге:`   **' + data.rank + '**\n`Очков за месяц:`   **' + data.points  + '**\n`Изменение места:`   **' + data.rank_change + '**')
+                    .setFooter("Бот клана", "")
+                    .setTimestamp()
+                    message.channel.send({embed});
+                }
             }
             
-            if (err) {
-            console.log('Error:', err);
-            } else if (res.statusCode !== 200) {
-            console.log('Status:', res.statusCode);
-            } else {
-            //Собираем RichEmbed сообщение
-            const embed = new Discord.RichEmbed()
-            .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
-            .setColor(0xFFF100)
-            .setDescription('`Название клана:`   **' + data.clan + '**\n`Глава клана:`  **' + data.clan_leader + '**\n`Бойцов в клане:`   **' + data.members + '**\n`Лига:`   **' + data.liga + '**\n`Место в лиге:`   **' + data.rank + '**\n`Очков за месяц:`   **' + data.points  + '**\n`Изменение места:`   **' + data.rank_change + '**')
-            .setFooter("Бот клана", "")
-            .setTimestamp()
-            message.channel.send({embed});
-            }
+            
         });
     }
     
