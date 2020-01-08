@@ -40,7 +40,8 @@ client.on('message', message => {
     //Рейтинг клана за месяц
     if(commandIS("клан", message)){
         var clanName = "РезидентыВарфайс";
-        var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
+        var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
+        var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
         var url = encodeURI(uri);
 
         request.get({
