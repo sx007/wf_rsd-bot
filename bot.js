@@ -49,6 +49,18 @@ client.on('message', message => {
             json: true,
             headers: {'User-Agent': 'request'}
         }, (err, res, data) => {            
+            //Проверяем ответ на наличие ключа error
+            if(data.error == 0) {
+                console.log('Сервер API игры недоступен');
+                //Собираем RichEmbed сообщение
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0xFFF100)
+                .setDescription('Сервер с информацией недоступен')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
+            }
             //Проверяем ответ на наличие ключа code
             if(data.code == 0) {
                 console.log('Такого клана не найдено');
