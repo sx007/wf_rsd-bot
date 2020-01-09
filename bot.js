@@ -79,7 +79,7 @@ function sendRichEmbed(text) {
     .setDescription(text)
     .setFooter("Бот клана", "")
     .setTimestamp()
-    message.channel.send(embed);
+    message.channel.send({embed});
 }
 
 /* Показывает что бот в сети */
@@ -107,8 +107,8 @@ client.on('message', message => {
             var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
             var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
             var url = encodeURI(uri);
-            message.channel.send("Одна переменная");
-            //getInfoClan(url);
+            //message.channel.send("Одна переменная");
+            getInfoClan(url);
         }
         if(args.length === 2){
             var clanName = args[1];
