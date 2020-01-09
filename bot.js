@@ -93,6 +93,7 @@ client.on('message', message => {
                 }
             });
         }
+        //Если указано название клана
         if(args.length === 2){
             var clanName = args[1];
             if (clanName.length >= 4 && clanName.length <= 16) {
@@ -122,7 +123,7 @@ client.on('message', message => {
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
                         .setColor(0xFFF100)
-                        .setDescription('Такой клан не найден')
+                        .setDescription('На всех трёх игровых серверах такой клан не найден')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
                         message.channel.send({embed});
@@ -163,7 +164,7 @@ client.on('message', message => {
                 message.channel.send({embed});
             }
         }
-        //Если три аргумента
+        //Если указано название клана и сервер
         if(args.length === 3){
             var clanName = args[1];
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
@@ -200,7 +201,7 @@ client.on('message', message => {
                     }
                     //Проверяем ответ на наличие ключа code
                     if(data.code == 0) {
-                        console.log('Такого клана не найдено');
+                        console.log('На указанном сервере такого клана не найдено');
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
