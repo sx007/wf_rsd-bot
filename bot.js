@@ -85,7 +85,7 @@ client.on('message', message => {
                         const embed = new Discord.RichEmbed()
                         .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
                         .setColor(0xFFF100)
-                        .setDescription('Название клана:   **``' + data.clan + '``\nГлава клана:  ``' + data.clan_leader + '``\nБойцов в клане:   ``' + data.members + '``\nЛига:   ``' + data.liga + '``\nМесто в лиге:   ``' + data.rank + '``\nОчков за месяц:   ``' + data.points  + '``\nИзменение места:   ``' + data.rank_change + '``')
+                        .setDescription('**Название клана:**   ``' + data.clan + '``\n**Глава клана:**  ``' + data.clan_leader + '``\n**Бойцов в клане:**   ``' + data.members + '``\n**Лига:**   ``' + data.liga + '``\n**Место в лиге:**   ``' + data.rank + '``\n**Очков за месяц:**   ``' + data.points  + '``\n**Изменение места:**   ``' + data.rank_change + '``')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
                         message.channel.send({embed});
@@ -146,7 +146,7 @@ client.on('message', message => {
                             const embed = new Discord.RichEmbed()
                             .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
                             .setColor(0xFFF100)
-                            .setDescription('Название клана:   ``' + data.clan + '``\nИгровой сервер:  ``' + nameClanJson + '``\nГлава клана:  ``' + data.clan_leader + '``\nБойцов в клане:   ``' + data.members + '``\nЛига:   ``' + data.liga + '``\nМесто в лиге:   ``' + data.rank + '``\nОчков за месяц:   ``' + data.points  + '``\nИзменение места:   ``' + data.rank_change + '``')
+                            .setDescription('**Название клана:**   ``' + data.clan + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Глава клана:**  ``' + data.clan_leader + '``\n**Бойцов в клане:**   ``' + data.members + '``\n**Лига:**   ``' + data.liga + '``\n**Место в лиге:**   ``' + data.rank + '``\n**Очков за месяц:**   ``' + data.points  + '``\n**Изменение места:**   ``' + data.rank_change + '``')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
@@ -229,7 +229,7 @@ client.on('message', message => {
                             const embed = new Discord.RichEmbed()
                             .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
                             .setColor(0xFFF100)
-                            .setDescription('Название клана:   ``' + data.clan + '``\nИгровой сервер:  ``' + nameClanJson + '``\nГлава клана:  ``' + data.clan_leader + '``\nБойцов в клане:   ``' + data.members + '``\nЛига:   ``' + data.liga + '``\nМесто в лиге:   ``' + data.rank + '``\nОчков за месяц:   ``' + data.points  + '``\nИзменение места:   ``' + data.rank_change + '``')
+                            .setDescription('**Название клана:**   ``' + data.clan + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Глава клана:**  ``' + data.clan_leader + '``\n**Бойцов в клане:**   ``' + data.members + '``\n**Лига:**   ``' + data.liga + '``\n**Место в лиге:**   ``' + data.rank + '``\n**Очков за месяц:**   ``' + data.points  + '``\n**Изменение места:**   ``' + data.rank_change + '``')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
