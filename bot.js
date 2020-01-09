@@ -116,7 +116,7 @@ client.on('message', message => {
             var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
             var url = encodeURI(uri);
             message.channel.send("Две переменных " + clanName);
-            sendRichEmbed("Две переменных");
+            sendRichEmbed(clanName);
             //getInfoClan($url);
         }
         if(args.length === 3){
@@ -125,7 +125,7 @@ client.on('message', message => {
             var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
             var url = encodeURI(uri);
             message.channel.send("Три переменных " + clanName + " " + srv);
-            sendRichEmbed("Три переменных");
+            sendRichEmbed(srv);
             //getInfoClan($url);
         }
         //var clanName = "РезидентыВарфайс";
