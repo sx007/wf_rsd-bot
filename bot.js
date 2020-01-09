@@ -70,6 +70,18 @@ function getInfoClan($UrlLink) {
     });
 }
 
+/* Формирование RichEmbed сообщения */
+function sendRichEmbed($text) {
+    //Собираем RichEmbed сообщение
+    const embed = new Discord.RichEmbed()
+    .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+    .setColor(0xFFF100)
+    .setDescription($text)
+    .setFooter("Бот клана", "")
+    .setTimestamp()
+    message.channel.send({embed});
+}
+
 /* Показывает что бот в сети */
 client.on('ready', () => {
   client.user.setPresence({ game: { name: 'Warface', type: 0 } })
@@ -103,7 +115,8 @@ client.on('message', message => {
             var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
             var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
             var url = encodeURI(uri);
-            message.channel.send("Две переменных" + clanName);
+            message.channel.send("Две переменных " + clanName);
+            sendRichEmbed("Две переменных");
             //getInfoClan($url);
         }
         if(args.length === 3){
@@ -111,7 +124,8 @@ client.on('message', message => {
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
             var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
             var url = encodeURI(uri);
-            message.channel.send("Три переменных" + clanName + " " + srv);
+            message.channel.send("Три переменных " + clanName + " " + srv);
+            sendRichEmbed("Три переменных");
             //getInfoClan($url);
         }
         //var clanName = "РезидентыВарфайс";
