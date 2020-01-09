@@ -79,7 +79,7 @@ function sendRichEmbed(text) {
     .setDescription(text)
     .setFooter("Бот клана", "")
     .setTimestamp()
-    message.channel.send({embed});
+    message.channel.send(embed);
 }
 
 /* Показывает что бот в сети */
