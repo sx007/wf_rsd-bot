@@ -20,6 +20,56 @@ function hasRole(mem, role){
         return false;
     }
 }
+
+/* Получение информации по клану */
+function getInfoClan($UrlLink) {
+    request.get({
+        url: url,
+        json: true,
+        headers: {'User-Agent': 'request'}
+    }, (err, res, data) => {            
+        //Проверяем ответ на наличие ключа error
+        if(data.error == 0) {
+            console.log('Сервер API игры недоступен');
+            //Собираем RichEmbed сообщение
+            const embed = new Discord.RichEmbed()
+            .setTitle(":no_entry_sign: Ошибка")
+            .setColor(0xFFF100)
+            .setDescription('Сервер с информацией недоступен')
+            .setFooter("Бот клана", "")
+            .setTimestamp()
+            message.channel.send({embed});
+        }
+        //Проверяем ответ на наличие ключа code
+        if(data.code == 0) {
+            console.log('Такого клана не найдено');
+            //Собираем RichEmbed сообщение
+            const embed = new Discord.RichEmbed()
+            .setTitle(":no_entry_sign: Ошибка")
+            .setColor(0xFFF100)
+            .setDescription('Такой клан не найден')
+            .setFooter("Бот клана", "")
+            .setTimestamp()
+            message.channel.send({embed});
+        } else {
+            if (err) {
+                console.log('Error:', err);
+            } else if (res.statusCode !== 200) {
+                console.log('Status:', res.statusCode);
+            } else {
+                //Собираем RichEmbed сообщение
+                const embed = new Discord.RichEmbed()
+                .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                .setColor(0xFFF100)
+                .setDescription('`Название клана:`   **' + data.clan + '**\n`Глава клана:`  **' + data.clan_leader + '**\n`Бойцов в клане:`   **' + data.members + '**\n`Лига:`   **' + data.liga + '**\n`Место в лиге:`   **' + data.rank + '**\n`Очков за месяц:`   **' + data.points  + '**\n`Изменение места:`   **' + data.rank_change + '**')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
+            }
+        }
+    });
+}
+
 /* Показывает что бот в сети */
 client.on('ready', () => {
   client.user.setPresence({ game: { name: 'Warface', type: 0 } })
@@ -39,11 +89,36 @@ client.on('message', message => {
     }
     //Рейтинг клана за месяц
     if(commandIS("клан", message)){
-        var clanName = "РезидентыВарфайс";
-        var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
-        var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
-        var url = encodeURI(uri);
-
+        //Вывести информацию только по нашему клану 
+        if(args.length === 1){
+            var clanName = "РезидентыВарфайс";
+            var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
+            var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
+            var url = encodeURI(uri);
+            message.channel.send("Одна переменная");
+            //getInfoClan(url);
+        }
+        if(args.length === 2){
+            var clanName = args[1];
+            var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
+            var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
+            var url = encodeURI(uri);
+            message.channel.send("Две переменных" + clanName);
+            //getInfoClan($url);
+        }
+        if(args.length === 3){
+            var clanName = args[1];
+            var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
+            var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
+            var url = encodeURI(uri);
+            message.channel.send("Три переменных" + clanName + " " + srv);
+            //getInfoClan($url);
+        }
+        //var clanName = "РезидентыВарфайс";
+        //var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
+        //var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
+        //var url = encodeURI(uri);
+        /*
         request.get({
             url: url,
             json: true,
@@ -89,6 +164,7 @@ client.on('message', message => {
                 }
             }
         });
+        */
     }
     
     /* команда скажи */
