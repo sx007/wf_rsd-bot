@@ -154,7 +154,13 @@ client.on('message', message => {
                     }
                 });
             } else {
-                //Не соответствует название клана
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0xFFF100)
+                .setDescription('Название клана должно быть от 4 до 16 символов')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
             }
         }
         //Если три аргумента
