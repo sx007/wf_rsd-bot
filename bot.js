@@ -118,7 +118,7 @@ client.on('message', message => {
                     }
                     //Проверяем ответ на наличие ключа code
                     if(data.code == 0) {
-                        console.log('Такого клана не найдено');
+                        //console.log('Такого клана не найдено');
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
@@ -201,12 +201,12 @@ client.on('message', message => {
                     }
                     //Проверяем ответ на наличие ключа code
                     if(data.code == 0) {
-                        console.log('На указанном сервере такого клана не найдено');
+                        //console.log('На указанном сервере такого клана не найдено');
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
                         .setColor(0xFFF100)
-                        .setDescription('Такой клан не найден')
+                        .setDescription('На указанном сервере такого клана не найдено')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
                         message.channel.send({embed});
