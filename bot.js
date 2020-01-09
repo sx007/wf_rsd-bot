@@ -22,9 +22,9 @@ function hasRole(mem, role){
 }
 
 /* Получение информации по клану */
-function getInfoClan($UrlLink) {
+function getInfoClan(UrlLink) {
     request.get({
-        url: url,
+        url: UrlLink,
         json: true,
         headers: {'User-Agent': 'request'}
     }, (err, res, data) => {            
@@ -71,12 +71,12 @@ function getInfoClan($UrlLink) {
 }
 
 /* Формирование RichEmbed сообщения */
-function sendRichEmbed($text) {
+function sendRichEmbed(text) {
     //Собираем RichEmbed сообщение
     const embed = new Discord.RichEmbed()
-    .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+    .setTitle(":no_entry_sign: Ошибка")
     .setColor(0xFFF100)
-    .setDescription($text)
+    .setDescription(text)
     .setFooter("Бот клана", "")
     .setTimestamp()
     message.channel.send({embed});
