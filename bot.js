@@ -21,66 +21,6 @@ function hasRole(mem, role){
     }
 }
 
-/* Получение информации по клану */
-function getInfoClan(UrlLink) {
-    request.get({
-        url: UrlLink,
-        json: true,
-        headers: {'User-Agent': 'request'}
-    }, (err, res, data) => {            
-        //Проверяем ответ на наличие ключа error
-        if(data.error == 0) {
-            console.log('Сервер API игры недоступен');
-            //Собираем RichEmbed сообщение
-            const embed = new Discord.RichEmbed()
-            .setTitle(":no_entry_sign: Ошибка")
-            .setColor(0xFFF100)
-            .setDescription('Сервер с информацией недоступен')
-            .setFooter("Бот клана", "")
-            .setTimestamp()
-            message.channel.send({embed});
-        }
-        //Проверяем ответ на наличие ключа code
-        if(data.code == 0) {
-            console.log('Такого клана не найдено');
-            //Собираем RichEmbed сообщение
-            const embed = new Discord.RichEmbed()
-            .setTitle(":no_entry_sign: Ошибка")
-            .setColor(0xFFF100)
-            .setDescription('Такой клан не найден')
-            .setFooter("Бот клана", "")
-            .setTimestamp()
-            message.channel.send({embed});
-        } else {
-            if (err) {
-                console.log('Error:', err);
-            } else if (res.statusCode !== 200) {
-                console.log('Status:', res.statusCode);
-            } else {
-                //Собираем RichEmbed сообщение
-                const embed = new Discord.RichEmbed()
-                .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
-                .setColor(0xFFF100)
-                .setDescription('`Название клана:`   **' + data.clan + '**\n`Глава клана:`  **' + data.clan_leader + '**\n`Бойцов в клане:`   **' + data.members + '**\n`Лига:`   **' + data.liga + '**\n`Место в лиге:`   **' + data.rank + '**\n`Очков за месяц:`   **' + data.points  + '**\n`Изменение места:`   **' + data.rank_change + '**')
-                .setFooter("Бот клана", "")
-                .setTimestamp()
-                message.channel.send({embed});
-            }
-        }
-    });
-}
-
-/* Формирование RichEmbed сообщения */
-function sendRichEmbed(text) {
-    //Собираем RichEmbed сообщение
-    const embed = new Discord.RichEmbed()
-    .setTitle(":no_entry_sign: Ошибка")
-    .setColor(0xFFF100)
-    .setDescription(text)
-    .setFooter("Бот клана", "")
-    .setTimestamp()
-    message.channel.send({embed});
-}
 
 /* Показывает что бот в сети */
 client.on('ready', () => {
@@ -107,25 +47,184 @@ client.on('message', message => {
             var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
             var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
             var url = encodeURI(uri);
-            //message.channel.send("Одна переменная");
-            getInfoClan(url);
+            request.get({
+                url: url,
+                json: true,
+                headers: {'User-Agent': 'request'}
+            }, (err, res, data) => {            
+                //Проверяем ответ на наличие ключа error
+                if(data.error == 0) {
+                    console.log('Сервер API игры недоступен');
+                    //Собираем RichEmbed сообщение
+                    const embed = new Discord.RichEmbed()
+                    .setTitle(":no_entry_sign: Ошибка")
+                    .setColor(0xFFF100)
+                    .setDescription('Сервер с информацией недоступен')
+                    .setFooter("Бот клана", "")
+                    .setTimestamp()
+                    message.channel.send({embed});
+                }
+                //Проверяем ответ на наличие ключа code
+                if(data.code == 0) {
+                    console.log('Такого клана не найдено');
+                    //Собираем RichEmbed сообщение
+                    const embed = new Discord.RichEmbed()
+                    .setTitle(":no_entry_sign: Ошибка")
+                    .setColor(0xFFF100)
+                    .setDescription('Такой клан не найден')
+                    .setFooter("Бот клана", "")
+                    .setTimestamp()
+                    message.channel.send({embed});
+                } else {
+                    if (err) {
+                        console.log('Error:', err);
+                    } else if (res.statusCode !== 200) {
+                        console.log('Status:', res.statusCode);
+                    } else {
+                        //Собираем RichEmbed сообщение
+                        const embed = new Discord.RichEmbed()
+                        .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                        .setColor(0xFFF100)
+                        .setDescription('`Название клана:`   **' + data.clan + '**\n`Глава клана:`  **' + data.clan_leader + '**\n`Бойцов в клане:`   **' + data.members + '**\n`Лига:`   **' + data.liga + '**\n`Место в лиге:`   **' + data.rank + '**\n`Очков за месяц:`   **' + data.points  + '**\n`Изменение места:`   **' + data.rank_change + '**')
+                        .setFooter("Бот клана", "")
+                        .setTimestamp()
+                        message.channel.send({embed});
+                    }
+                }
+            });
         }
         if(args.length === 2){
             var clanName = args[1];
-            var srv = "1"; //Альфа - 1, Браво - 2, Чарли - 3
-            var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
-            var url = encodeURI(uri);
-            message.channel.send("Две переменных " + clanName);
-            sendRichEmbed(clanName);
-            //getInfoClan($url);
+            if (clanName.length >= 4 && clanName.length <= 16) {
+                var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName;
+                var url = encodeURI(uri);
+                request.get({
+                    url: url,
+                    json: true,
+                    headers: {'User-Agent': 'request'}
+                }, (err, res, data) => {            
+                    //Проверяем ответ на наличие ключа error
+                    if(data.error == 0) {
+                        console.log('Сервер API игры недоступен');
+                        //Собираем RichEmbed сообщение
+                        const embed = new Discord.RichEmbed()
+                        .setTitle(":no_entry_sign: Ошибка")
+                        .setColor(0xFFF100)
+                        .setDescription('Сервер с информацией недоступен')
+                        .setFooter("Бот клана", "")
+                        .setTimestamp()
+                        message.channel.send({embed});
+                    }
+                    //Проверяем ответ на наличие ключа code
+                    if(data.code == 0) {
+                        console.log('Такого клана не найдено');
+                        //Собираем RichEmbed сообщение
+                        const embed = new Discord.RichEmbed()
+                        .setTitle(":no_entry_sign: Ошибка")
+                        .setColor(0xFFF100)
+                        .setDescription('Такой клан не найден')
+                        .setFooter("Бот клана", "")
+                        .setTimestamp()
+                        message.channel.send({embed});
+                    } else {
+                        if (err) {
+                            console.log('Error:', err);
+                        } else if (res.statusCode !== 200) {
+                            console.log('Status:', res.statusCode);
+                        } else {
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                            .setColor(0xFFF100)
+                            .setDescription('`Название клана:`   **' + data.clan + '**\n`Глава клана:`  **' + data.clan_leader + '**\n`Бойцов в клане:`   **' + data.members + '**\n`Лига:`   **' + data.liga + '**\n`Место в лиге:`   **' + data.rank + '**\n`Очков за месяц:`   **' + data.points  + '**\n`Изменение места:`   **' + data.rank_change + '**')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
+                        }
+                    }
+                });
+            } else {
+                //Не соответствует название клана
+            }
         }
+        //Если три аргумента
         if(args.length === 3){
             var clanName = args[1];
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
-            var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + srv;
-            var url = encodeURI(uri);
-            message.channel.send("Три переменных " + clanName + " " + srv);
-            sendRichEmbed(srv);
+            //Проверяем название клана
+            if (clanName.length >= 4 && clanName.length <= 16) {
+                //Проверяем какой сервер указал пользователь
+                if (srv == "Альфа" || srv == "альфа") {
+                    var gameSrv = 1;
+                }
+                if (srv == "Браво" || srv == "браво") {
+                    var gameSrv = 2;
+                }
+                if (srv == "Чарли" || srv == "чарли") {
+                    var gameSrv = 3;
+                }
+                var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + gameSrv;
+                var url = encodeURI(uri);
+                request.get({
+                    url: url,
+                    json: true,
+                    headers: {'User-Agent': 'request'}
+                }, (err, res, data) => {            
+                    //Проверяем ответ на наличие ключа error
+                    if(data.error == 0) {
+                        console.log('Сервер API игры недоступен');
+                        //Собираем RichEmbed сообщение
+                        const embed = new Discord.RichEmbed()
+                        .setTitle(":no_entry_sign: Ошибка")
+                        .setColor(0xFFF100)
+                        .setDescription('Сервер с информацией недоступен')
+                        .setFooter("Бот клана", "")
+                        .setTimestamp()
+                        message.channel.send({embed});
+                    }
+                    //Проверяем ответ на наличие ключа code
+                    if(data.code == 0) {
+                        console.log('Такого клана не найдено');
+                        //Собираем RichEmbed сообщение
+                        const embed = new Discord.RichEmbed()
+                        .setTitle(":no_entry_sign: Ошибка")
+                        .setColor(0xFFF100)
+                        .setDescription('Такой клан не найден')
+                        .setFooter("Бот клана", "")
+                        .setTimestamp()
+                        message.channel.send({embed});
+                    } else {
+                        if (err) {
+                            console.log('Error:', err);
+                        } else if (res.statusCode !== 200) {
+                            console.log('Status:', res.statusCode);
+                        } else {
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                            .setColor(0xFFF100)
+                            .setDescription('`Название клана:`   **' + data.clan + '**\n`Глава клана:`  **' + data.clan_leader + '**\n`Бойцов в клане:`   **' + data.members + '**\n`Лига:`   **' + data.liga + '**\n`Место в лиге:`   **' + data.rank + '**\n`Очков за месяц:`   **' + data.points  + '**\n`Изменение места:`   **' + data.rank_change + '**')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
+                        }
+                    }
+                });
+            } else {
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0xFFF100)
+                .setDescription('Название клана должно быть от 4 до 16 символов')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
+            }
+
+
+            //var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + gameSrv;
+            //var url = encodeURI(uri);
+            //message.channel.send("Три переменных " + clanName + " " + srv);
+            //sendRichEmbed(srv);
             //getInfoClan($url);
         }
         //var clanName = "РезидентыВарфайс";
