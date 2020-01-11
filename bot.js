@@ -352,7 +352,7 @@ client.on('message', message => {
                 const embed = new Discord.RichEmbed()
                 .setTitle(":no_entry_sign: Ошибка")
                 .setColor(0x02A5D0)
-                .setDescription('Неверно указан сервер')
+                .setDescription('Неверно указан сервер '+ srv)
                 .setFooter("Бот клана", "")
                 .setTimestamp()
                 message.channel.send({embed});
