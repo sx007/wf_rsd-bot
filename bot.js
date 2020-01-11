@@ -255,7 +255,7 @@ client.on('message', message => {
         if(args.length === 1){
             const embed = new Discord.RichEmbed()
             .setTitle(":no_entry_sign: Ошибка")
-            .setColor(0xFFF100)
+            .setColor(0x173520)
             .setDescription('Через пробел необходимо указать хотя бы Ник бойца, которого будите искать.')
             .setFooter("Бот клана", "")
             .setTimestamp()
@@ -278,7 +278,7 @@ client.on('message', message => {
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0xFFF100)
+                        .setColor(0x173520)
                         .setDescription('Сервер с информацией недоступен')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
@@ -290,7 +290,7 @@ client.on('message', message => {
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0xFFF100)
+                        .setColor(0x173520)
                         .setDescription('На всех трёх игровых серверах такой боец не найден\nИли статистика скрыта или персонаж неактивен')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
@@ -314,7 +314,7 @@ client.on('message', message => {
                             }
                             const embed = new Discord.RichEmbed()
                             .setTitle(":bar_chart: Статистика по бойцу")
-                            .setColor(0xFFF100)
+                            .setColor(0x173520)
                             .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``' + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
@@ -325,7 +325,7 @@ client.on('message', message => {
             } else {
                 const embed = new Discord.RichEmbed()
                 .setTitle(":no_entry_sign: Ошибка")
-                .setColor(0xFFF100)
+                .setColor(0x173520)
                 .setDescription('Ник бойца должен быть от 4 до 16 символов')
                 .setFooter("Бот клана", "")
                 .setTimestamp()
@@ -361,7 +361,7 @@ client.on('message', message => {
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0xFFF100)
+                        .setColor(0x173520)
                         .setDescription('Сервер с информацией недоступен')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
@@ -373,7 +373,7 @@ client.on('message', message => {
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0xFFF100)
+                        .setColor(0x173520)
                         .setDescription('На указанном сервере такого бойца не найдено\nИли статистика скрыта или персонаж неактивен')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
@@ -397,7 +397,7 @@ client.on('message', message => {
                             }
                             const embed = new Discord.RichEmbed()
                             .setTitle(":bar_chart: Статистика по бойцу")
-                            .setColor(0xFFF100)
+                            .setColor(0x173520)
                             .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``' + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
@@ -408,7 +408,7 @@ client.on('message', message => {
             } else {
                 const embed = new Discord.RichEmbed()
                 .setTitle(":no_entry_sign: Ошибка")
-                .setColor(0xFFF100)
+                .setColor(0x173520)
                 .setDescription('Ник бойца должн быть от 4 до 16 символов')
                 .setFooter("Бот клана", "")
                 .setTimestamp()
