@@ -348,7 +348,7 @@ client.on('message', message => {
             var gameName = args[1];
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
             //Проверяем на корректность указанного сервера
-            if (srv !== "Альфа" || srv !== "альфа" || srv !== "Браво" || srv !== "браво" || srv !== "Чарли" || srv !== "чарли") {
+            if (srv != "Альфа" || srv != "альфа" || srv != "Браво" || srv != "браво" || srv != "Чарли" || srv != "чарли") {
                 const embed = new Discord.RichEmbed()
                 .setTitle(":no_entry_sign: Ошибка")
                 .setColor(0x02A5D0)
