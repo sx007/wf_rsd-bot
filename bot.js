@@ -348,15 +348,7 @@ client.on('message', message => {
             var gameName = args[1];
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
             //Проверяем на корректность указанного сервера
-            if (srv != "Альфа" || srv != "альфа" || srv != "Браво" || srv != "браво" || srv != "Чарли" || srv != "чарли") {
-                const embed = new Discord.RichEmbed()
-                .setTitle(":no_entry_sign: Ошибка")
-                .setColor(0x02A5D0)
-                .setDescription('Неверно указан сервер '+ srv)
-                .setFooter("Бот клана", "")
-                .setTimestamp()
-                message.channel.send({embed});
-            } else {
+            if (srv == "Альфа" || srv == "альфа" || srv == "Браво" || srv == "браво" || srv == "Чарли" || srv == "чарли") {
                 //Проверяем ник бойца
                 if (gameName.length >= 4 && gameName.length <= 16) {
                     //Проверяем какой сервер указал пользователь
@@ -434,7 +426,15 @@ client.on('message', message => {
                     .setFooter("Бот клана", "")
                     .setTimestamp()
                     message.channel.send({embed});
-                }
+                }  
+            } else {
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0x02A5D0)
+                .setDescription('Неверно указан сервер '+ srv)
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
             }
         }
     }
