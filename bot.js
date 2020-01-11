@@ -168,83 +168,94 @@ client.on('message', message => {
         if(args.length === 3){
             var clanName = args[1];
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
-            //Проверяем название клана
-            if (clanName.length >= 4 && clanName.length <= 16) {
-                //Проверяем какой сервер указал пользователь
-                if (srv == "Альфа" || srv == "альфа") {
-                    var gameSrv = 1;
-                }
-                if (srv == "Браво" || srv == "браво") {
-                    var gameSrv = 2;
-                }
-                if (srv == "Чарли" || srv == "чарли") {
-                    var gameSrv = 3;
-                }
-                var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + gameSrv;
-                var url = encodeURI(uri);
-                request.get({
-                    url: url,
-                    json: true,
-                    headers: {'User-Agent': 'request'}
-                }, (err, res, data) => {            
-                    //Проверяем ответ на наличие ключа error
-                    if(data.error == 0) {
-                        console.log('Сервер API игры недоступен');
-                        //Собираем RichEmbed сообщение
-                        const embed = new Discord.RichEmbed()
-                        .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0xFFF100)
-                        .setDescription('Сервер с информацией недоступен')
-                        .setFooter("Бот клана", "")
-                        .setTimestamp()
-                        message.channel.send({embed});
+            //Проверяем на корректность указанного сервера
+            if (srv != "Альфа" || srv != "альфа" || srv != "Браво" || srv != "браво" || srv == "Чарли" || srv == "чарли") {
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0xFFF100)
+                .setDescription('Неверно указан сервер')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
+            } else {
+                //Проверяем название клана
+                if (clanName.length >= 4 && clanName.length <= 16) {
+                    //Проверяем какой сервер указал пользователь
+                    if (srv == "Альфа" || srv == "альфа") {
+                        var gameSrv = 1;
                     }
-                    //Проверяем ответ на наличие ключа code
-                    if(data.code == 0) {
-                        //console.log('На указанном сервере такого клана не найдено');
-                        //Собираем RichEmbed сообщение
-                        const embed = new Discord.RichEmbed()
-                        .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0xFFF100)
-                        .setDescription('На указанном сервере такого клана не найдено')
-                        .setFooter("Бот клана", "")
-                        .setTimestamp()
-                        message.channel.send({embed});
-                    } else {
-                        if (err) {
-                            console.log('Error:', err);
-                        } else if (res.statusCode !== 200) {
-                            console.log('Status:', res.statusCode);
-                        } else {
+                    if (srv == "Браво" || srv == "браво") {
+                        var gameSrv = 2;
+                    }
+                    if (srv == "Чарли" || srv == "чарли") {
+                        var gameSrv = 3;
+                    }
+                    var uri = "https://sx007.000webhostapp.com/api_wf_clan.php?clan=" + clanName + "&server=" + gameSrv;
+                    var url = encodeURI(uri);
+                    request.get({
+                        url: url,
+                        json: true,
+                        headers: {'User-Agent': 'request'}
+                    }, (err, res, data) => {            
+                        //Проверяем ответ на наличие ключа error
+                        if(data.error == 0) {
+                            console.log('Сервер API игры недоступен');
                             //Собираем RichEmbed сообщение
-                            var nameClanJson = "";
-                            if (data.server == 1){
-                                nameClanJson = "Альфа";
-                            }
-                            if (data.server == 2){
-                                nameClanJson = "Браво";
-                            }
-                            if (data.server == 3){
-                                nameClanJson = "Чарли";
-                            }
                             const embed = new Discord.RichEmbed()
-                            .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                            .setTitle(":no_entry_sign: Ошибка")
                             .setColor(0xFFF100)
-                            .setDescription('**Название клана:**   ``' + data.clan + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Глава клана:**  ``' + data.clan_leader + '``\n**Бойцов в клане:**   ``' + data.members + '``\n**Лига:**   ``' + data.liga + '``\n**Место в лиге:**   ``' + data.rank + '``\n**Очков за месяц:**   ``' + data.points  + '``\n**Изменение места:**   ``' + data.rank_change + '``')
+                            .setDescription('Сервер с информацией недоступен')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
                         }
-                    }
-                });
-            } else {
-                const embed = new Discord.RichEmbed()
-                .setTitle(":no_entry_sign: Ошибка")
-                .setColor(0xFFF100)
-                .setDescription('Название клана должно быть от 4 до 16 символов')
-                .setFooter("Бот клана", "")
-                .setTimestamp()
-                message.channel.send({embed});
+                        //Проверяем ответ на наличие ключа code
+                        if(data.code == 0) {
+                            //console.log('На указанном сервере такого клана не найдено');
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":no_entry_sign: Ошибка")
+                            .setColor(0xFFF100)
+                            .setDescription('На указанном сервере такого клана не найдено')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
+                        } else {
+                            if (err) {
+                                console.log('Error:', err);
+                            } else if (res.statusCode !== 200) {
+                                console.log('Status:', res.statusCode);
+                            } else {
+                                //Собираем RichEmbed сообщение
+                                var nameClanJson = "";
+                                if (data.server == 1){
+                                    nameClanJson = "Альфа";
+                                }
+                                if (data.server == 2){
+                                    nameClanJson = "Браво";
+                                }
+                                if (data.server == 3){
+                                    nameClanJson = "Чарли";
+                                }
+                                const embed = new Discord.RichEmbed()
+                                .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                                .setColor(0xFFF100)
+                                .setDescription('**Название клана:**   ``' + data.clan + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Глава клана:**  ``' + data.clan_leader + '``\n**Бойцов в клане:**   ``' + data.members + '``\n**Лига:**   ``' + data.liga + '``\n**Место в лиге:**   ``' + data.rank + '``\n**Очков за месяц:**   ``' + data.points  + '``\n**Изменение места:**   ``' + data.rank_change + '``')
+                                .setFooter("Бот клана", "")
+                                .setTimestamp()
+                                message.channel.send({embed});
+                            }
+                        }
+                    });
+                } else {
+                    const embed = new Discord.RichEmbed()
+                    .setTitle(":no_entry_sign: Ошибка")
+                    .setColor(0xFFF100)
+                    .setDescription('Название клана должно быть от 4 до 16 символов')
+                    .setFooter("Бот клана", "")
+                    .setTimestamp()
+                    message.channel.send({embed});
+                }
             }
         }
     }
@@ -255,8 +266,8 @@ client.on('message', message => {
         if(args.length === 1){
             const embed = new Discord.RichEmbed()
             .setTitle(":no_entry_sign: Ошибка")
-            .setColor(0x173520)
-            .setDescription('Через пробел необходимо указать хотя бы Ник бойца, которого будите искать.')
+            .setColor(0x02A5D0)
+            .setDescription('Укажите через пробел ник бойца, которого будите искать.\nТак же можно указать сервер через пробел.\nПример команды: `!боец НикБойца Альфа`')
             .setFooter("Бот клана", "")
             .setTimestamp()
             message.channel.send({embed});
@@ -278,7 +289,7 @@ client.on('message', message => {
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0x173520)
+                        .setColor(0x02A5D0)
                         .setDescription('Сервер с информацией недоступен')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
@@ -290,7 +301,7 @@ client.on('message', message => {
                         //Собираем RichEmbed сообщение
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0x173520)
+                        .setColor(0x02A5D0)
                         .setDescription('На всех трёх игровых серверах такой боец не найден\nИли статистика скрыта или персонаж неактивен')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
@@ -314,8 +325,8 @@ client.on('message', message => {
                             }
                             const embed = new Discord.RichEmbed()
                             .setTitle(":bar_chart: Статистика по бойцу")
-                            .setColor(0x173520)
-                            .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``' + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
+                            .setColor(0x02A5D0)
+                            .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + "/" + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
@@ -325,7 +336,7 @@ client.on('message', message => {
             } else {
                 const embed = new Discord.RichEmbed()
                 .setTitle(":no_entry_sign: Ошибка")
-                .setColor(0x173520)
+                .setColor(0x02A5D0)
                 .setDescription('Ник бойца должен быть от 4 до 16 символов')
                 .setFooter("Бот клана", "")
                 .setTimestamp()
@@ -336,83 +347,94 @@ client.on('message', message => {
         if(args.length === 3){
             var gameName = args[1];
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
-            //Проверяем ник бойца
-            if (gameName.length >= 4 && gameName.length <= 16) {
-                //Проверяем какой сервер указал пользователь
-                if (srv == "Альфа" || srv == "альфа") {
-                    var gameSrv = 1;
-                }
-                if (srv == "Браво" || srv == "браво") {
-                    var gameSrv = 2;
-                }
-                if (srv == "Чарли" || srv == "чарли") {
-                    var gameSrv = 3;
-                }
-                var uri = "https://sx007.000webhostapp.com/api_wf_user.php?user=" + gameName + "&server=" + gameSrv;
-                var url = encodeURI(uri);
-                request.get({
-                    url: url,
-                    json: true,
-                    headers: {'User-Agent': 'request'}
-                }, (err, res, data) => {            
-                    //Проверяем ответ на наличие ключа error
-                    if(data.error == 0) {
-                        console.log('Сервер API игры недоступен');
-                        //Собираем RichEmbed сообщение
-                        const embed = new Discord.RichEmbed()
-                        .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0x173520)
-                        .setDescription('Сервер с информацией недоступен')
-                        .setFooter("Бот клана", "")
-                        .setTimestamp()
-                        message.channel.send({embed});
+            //Проверяем на корректность указанного сервера
+            if (srv != "Альфа" || srv != "альфа" || srv != "Браво" || srv != "браво" || srv == "Чарли" || srv == "чарли") {
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0xFFF100)
+                .setDescription('Неверно указан сервер')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
+            } else {
+                //Проверяем ник бойца
+                if (gameName.length >= 4 && gameName.length <= 16) {
+                    //Проверяем какой сервер указал пользователь
+                    if (srv == "Альфа" || srv == "альфа") {
+                        var gameSrv = 1;
                     }
-                    //Проверяем ответ на наличие ключа code
-                    if(data.code == 0) {
-                        //console.log('На указанном сервере такого бойца не найдено');
-                        //Собираем RichEmbed сообщение
-                        const embed = new Discord.RichEmbed()
-                        .setTitle(":no_entry_sign: Ошибка")
-                        .setColor(0x173520)
-                        .setDescription('На указанном сервере такого бойца не найдено\nИли статистика скрыта или персонаж неактивен')
-                        .setFooter("Бот клана", "")
-                        .setTimestamp()
-                        message.channel.send({embed});
-                    } else {
-                        if (err) {
-                            console.log('Error:', err);
-                        } else if (res.statusCode !== 200) {
-                            console.log('Status:', res.statusCode);
-                        } else {
+                    if (srv == "Браво" || srv == "браво") {
+                        var gameSrv = 2;
+                    }
+                    if (srv == "Чарли" || srv == "чарли") {
+                        var gameSrv = 3;
+                    }
+                    var uri = "https://sx007.000webhostapp.com/api_wf_user.php?user=" + gameName + "&server=" + gameSrv;
+                    var url = encodeURI(uri);
+                    request.get({
+                        url: url,
+                        json: true,
+                        headers: {'User-Agent': 'request'}
+                    }, (err, res, data) => {            
+                        //Проверяем ответ на наличие ключа error
+                        if(data.error == 0) {
+                            console.log('Сервер API игры недоступен');
                             //Собираем RichEmbed сообщение
-                            var nameClanJson = "";
-                            if (data.server == 1){
-                                nameClanJson = "Альфа";
-                            }
-                            if (data.server == 2){
-                                nameClanJson = "Браво";
-                            }
-                            if (data.server == 3){
-                                nameClanJson = "Чарли";
-                            }
                             const embed = new Discord.RichEmbed()
-                            .setTitle(":bar_chart: Статистика по бойцу")
-                            .setColor(0x173520)
-                            .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``' + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
+                            .setTitle(":no_entry_sign: Ошибка")
+                            .setColor(0x02A5D0)
+                            .setDescription('Сервер с информацией недоступен')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
                         }
-                    }
-                });
-            } else {
-                const embed = new Discord.RichEmbed()
-                .setTitle(":no_entry_sign: Ошибка")
-                .setColor(0x173520)
-                .setDescription('Ник бойца должн быть от 4 до 16 символов')
-                .setFooter("Бот клана", "")
-                .setTimestamp()
-                message.channel.send({embed});
+                        //Проверяем ответ на наличие ключа code
+                        if(data.code == 0) {
+                            //console.log('На указанном сервере такого бойца не найдено');
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":no_entry_sign: Ошибка")
+                            .setColor(0x02A5D0)
+                            .setDescription('На указанном сервере такого бойца не найдено\nИли статистика скрыта или персонаж неактивен')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
+                        } else {
+                            if (err) {
+                                console.log('Error:', err);
+                            } else if (res.statusCode !== 200) {
+                                console.log('Status:', res.statusCode);
+                            } else {
+                                //Собираем RichEmbed сообщение
+                                var nameClanJson = "";
+                                if (data.server == 1){
+                                    nameClanJson = "Альфа";
+                                }
+                                if (data.server == 2){
+                                    nameClanJson = "Браво";
+                                }
+                                if (data.server == 3){
+                                    nameClanJson = "Чарли";
+                                }
+                                const embed = new Discord.RichEmbed()
+                                .setTitle(":bar_chart: Статистика по бойцу")
+                                .setColor(0x02A5D0)
+                                .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
+                                .setFooter("Бот клана", "")
+                                .setTimestamp()
+                                message.channel.send({embed});
+                            }
+                        }
+                    });
+                } else {
+                    const embed = new Discord.RichEmbed()
+                    .setTitle(":no_entry_sign: Ошибка")
+                    .setColor(0x02A5D0)
+                    .setDescription('Ник бойца должн быть от 4 до 16 символов')
+                    .setFooter("Бот клана", "")
+                    .setTimestamp()
+                    message.channel.send({embed});
+                }
             }
         }
     }
