@@ -169,15 +169,7 @@ client.on('message', message => {
             var clanName = args[1];
             var srv = args[2]; //Альфа - 1, Браво - 2, Чарли - 3
             //Проверяем на корректность указанного сервера
-            if (srv !== "Альфа" || srv !== "альфа" || srv !== "Браво" || srv !== "браво" || srv !== "Чарли" || srv !== "чарли") {
-                const embed = new Discord.RichEmbed()
-                .setTitle(":no_entry_sign: Ошибка")
-                .setColor(0xFFF100)
-                .setDescription('Неверно указан сервер')
-                .setFooter("Бот клана", "")
-                .setTimestamp()
-                message.channel.send({embed});
-            } else {
+            if (srv == "Альфа" || srv == "альфа" || srv == "Браво" || srv == "браво" || srv == "Чарли" || srv == "чарли") {
                 //Проверяем название клана
                 if (clanName.length >= 4 && clanName.length <= 16) {
                     //Проверяем какой сервер указал пользователь
@@ -256,6 +248,14 @@ client.on('message', message => {
                     .setTimestamp()
                     message.channel.send({embed});
                 }
+            } else {
+                const embed = new Discord.RichEmbed()
+                .setTitle(":no_entry_sign: Ошибка")
+                .setColor(0xFFF100)
+                .setDescription('Неверно указан сервер\nДопустимые сервера: `Альфа Браво Чарли`')
+                .setFooter("Бот клана", "")
+                .setTimestamp()
+                message.channel.send({embed});
             }
         }
     }
@@ -431,7 +431,7 @@ client.on('message', message => {
                 const embed = new Discord.RichEmbed()
                 .setTitle(":no_entry_sign: Ошибка")
                 .setColor(0x02A5D0)
-                .setDescription('Неверно указан сервер '+ srv)
+                .setDescription('Неверно указан сервер\nДопустимые сервера: `Альфа Браво Чарли`')
                 .setFooter("Бот клана", "")
                 .setTimestamp()
                 message.channel.send({embed});
