@@ -70,26 +70,16 @@ client.on('message', message => {
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
                         .setColor(0xFFF100)
-                        .setDescription('На всех трёх серверах\nтакой клан __не найден__')
+                        .setDescription('Наш клан __не найден__')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
                         message.channel.send({embed});
                     }
                     if(data.code == 2) {
-                        var nameClanJson = "";
-                        if (data.server == 1){
-                            nameClanJson = "Альфа";
-                        }
-                        if (data.server == 2){
-                            nameClanJson = "Браво";
-                        }
-                        if (data.server == 3){
-                            nameClanJson = "Чарли";
-                        }
                         const embed = new Discord.RichEmbed()
                         .setTitle(":no_entry_sign: Ошибка")
                         .setColor(0xFFF100)
-                        .setDescription('Клан найден на сервере **'+ nameClanJson + '**\nНо еще __не набирал очков__ в этом месяце')
+                        .setDescription('Наш клан еще __не набирал очков__ в этом месяце')
                         .setFooter("Бот клана", "")
                         .setTimestamp()
                         message.channel.send({embed});
@@ -141,7 +131,7 @@ client.on('message', message => {
                             const embed = new Discord.RichEmbed()
                             .setTitle(":no_entry_sign: Ошибка")
                             .setColor(0xFFF100)
-                            .setDescription('На всех трёх серверах\nтакой клан __не найден__')
+                            .setDescription('На всех трёх серверах такой клан __не найден__')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
@@ -245,7 +235,7 @@ client.on('message', message => {
                                 const embed = new Discord.RichEmbed()
                                 .setTitle(":no_entry_sign: Ошибка")
                                 .setColor(0xFFF100)
-                                .setDescription('На указанном сервере\nтакой клан __не найден__')
+                                .setDescription('На указанном сервере такой клан __не найден__')
                                 .setFooter("Бот клана", "")
                                 .setTimestamp()
                                 message.channel.send({embed});
