@@ -301,7 +301,7 @@ client.on('message', message => {
                             const embed = new Discord.RichEmbed()
                             .setTitle(":no_entry_sign: Ошибка")
                             .setColor(0x02A5D0)
-                            .setDescription('На всех трёх игровых серверах такой боец не найден')
+                            .setDescription('На всех трёх игровых серверах такой __боец не найден__')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
@@ -320,7 +320,7 @@ client.on('message', message => {
                             const embed = new Discord.RichEmbed()
                             .setTitle(":no_entry_sign: Ошибка")
                             .setColor(0x02A5D0)
-                            .setDescription('Боец найден на сервере '+ nameClanJson + '\nНо его статистика скрыта')
+                            .setDescription('Боец найден на сервере **'+ nameClanJson + '**\nНо его __статистика скрыта__')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
@@ -339,7 +339,7 @@ client.on('message', message => {
                             const embed = new Discord.RichEmbed()
                             .setTitle(":no_entry_sign: Ошибка")
                             .setColor(0x02A5D0)
-                            .setDescription('Боец найден на сервере '+nameClanJson + '\nНо его персонаж неактивен')
+                            .setDescription('Боец найден на сервере **'+nameClanJson + '**\nНо его __персонаж неактивен__')
                             .setFooter("Бот клана", "")
                             .setTimestamp()
                             message.channel.send({embed});
@@ -424,7 +424,7 @@ client.on('message', message => {
                                 const embed = new Discord.RichEmbed()
                                 .setTitle(":no_entry_sign: Ошибка")
                                 .setColor(0x02A5D0)
-                                .setDescription('На всех трёх игровых серверах такой боец не найден')
+                                .setDescription('На всех трёх игровых серверах такой __боец не найден__')
                                 .setFooter("Бот клана", "")
                                 .setTimestamp()
                                 message.channel.send({embed});
@@ -443,7 +443,7 @@ client.on('message', message => {
                                 const embed = new Discord.RichEmbed()
                                 .setTitle(":no_entry_sign: Ошибка")
                                 .setColor(0x02A5D0)
-                                .setDescription('Боец найден на сервере '+ nameClanJson + '\nНо его статистика скрыта')
+                                .setDescription('Боец найден на сервере **'+ nameClanJson + '**\nНо его __статистика скрыта__')
                                 .setFooter("Бот клана", "")
                                 .setTimestamp()
                                 message.channel.send({embed});
@@ -462,7 +462,7 @@ client.on('message', message => {
                                 const embed = new Discord.RichEmbed()
                                 .setTitle(":no_entry_sign: Ошибка")
                                 .setColor(0x02A5D0)
-                                .setDescription('Боец найден на сервере '+nameClanJson + '\nНо его персонаж неактивен')
+                                .setDescription('Боец найден на сервере **'+nameClanJson + '**\nНо его __персонаж неактивен__')
                                 .setFooter("Бот клана", "")
                                 .setTimestamp()
                                 message.channel.send({embed});
