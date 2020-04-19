@@ -35,8 +35,7 @@ client.on('message', message => {
     if (message.content.includes('discord.gg/') || message.content.includes('discordapp.com/invite/')) {
         //Если сообщение не от Администратора или Модератора
         if(hasRole(message.member, "Администратор") || hasRole(message.member, "Модераторы")){
-            //Удаляем сообщение
-            //message.delete();
+            //ничего не делаем
         } else {
             //Удаляем сообщение
             message.delete();
@@ -102,14 +101,28 @@ client.on('message', message => {
                     } else if (res.statusCode !== 200) {
                         console.log('Status:', res.statusCode);
                     } else {
-                        //Собираем RichEmbed сообщение
-                        const embed = new Discord.RichEmbed()
-                        .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
-                        .setColor(0xFFF100)
-                        .setDescription('**Название клана:**   ``' + data.clan + '``\n**Глава клана:**  ``' + data.clan_leader + '``\n**Бойцов в клане:**   ``' + data.members + '``\n**Лига:**   ``' + data.liga + '``\n**Место в лиге:**   ``' + data.rank + '``\n**Очков за месяц:**   ``' + data.points  + '``\n**Изменение места:**   ``' + data.rank_change + '``')
-                        .setFooter("Бот клана", "")
-                        .setTimestamp()
-                        message.channel.send({embed});
+                        if(data.clan == undefined && data.clan_leader == undefined ) {
+                            console.log('Сервер API игры недоступен');
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":no_entry_sign: Ошибка")
+                            .setColor(0xFFF100)
+                            .setDescription('Сервер с информацией недоступен')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
+                        } else {
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":crossed_swords: Ежемесячный рейтинг клана")
+                            .setColor(0xFFF100)
+                            .setDescription('**Название клана:**   ``' + data.clan + '``\n**Глава клана:**  ``' + data.clan_leader + '``\n**Бойцов в клане:**   ``' + data.members + '``\n**Лига:**   ``' + data.liga + '``\n**Место в лиге:**   ``' + data.rank + '``\n**Очков за месяц:**   ``' + data.points  + '``\n**Изменение места:**   ``' + data.rank_change + '``')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
+                        }
+                        
+                        
                     }
                 }
             });
