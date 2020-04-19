@@ -31,6 +31,15 @@ client.on('ready', () => {
 
 /* команды сообщений */
 client.on('message', message => {
+    //Удаляем из текстовых каналов ссылки-приглашения
+    if (message.content.includes('discord.gg/') || message.content.includes('discordapp.com/invite/')) {
+        //Если сообщение не от Администратора или Модератора
+        if(!hasRole(message.member, "Администратор") || !hasRole(message.member, "Модераторы")){
+            //Удаляем сообщение
+            message.delete();
+        }
+    }
+    //Разделяем сообщение на части
     var args = message.content.split(/[ ]+/);
     /* команда привет */
     if(commandIS("привет", message)){
