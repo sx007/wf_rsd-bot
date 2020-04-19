@@ -444,24 +444,35 @@ client.on('message', message => {
                         } else if (res.statusCode !== 200) {
                             console.log('Status:', res.statusCode);
                         } else {
-                            //Собираем RichEmbed сообщение
-                            var nameClanJson = "";
-                            if (data.server == 1){
-                                nameClanJson = "Альфа";
+                            if(data.nickname == "" && data.nickname == "") {
+                                //Собираем RichEmbed сообщение
+                                const embed = new Discord.RichEmbed()
+                                .setTitle(":no_entry_sign: Ошибка")
+                                .setColor(0x02A5D0)
+                                .setDescription('Сервер с информацией недоступен')
+                                .setFooter("Бот клана", "")
+                                .setTimestamp()
+                                message.channel.send({embed});
+                            } else {
+                                //Собираем RichEmbed сообщение
+                                var nameServer = "";
+                                if (data.server == 1){
+                                    nameServer = "Альфа";
+                                }
+                                if (data.server == 2){
+                                    nameServer = "Браво";
+                                }
+                                if (data.server == 3){
+                                    nameServer = "Чарли";
+                                }
+                                const embed = new Discord.RichEmbed()
+                                .setTitle(":bar_chart: Статистика по бойцу")
+                                .setColor(0x02A5D0)
+                                .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameServer + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
+                                .setFooter("Бот клана", "")
+                                .setTimestamp()
+                                message.channel.send({embed});
                             }
-                            if (data.server == 2){
-                                nameClanJson = "Браво";
-                            }
-                            if (data.server == 3){
-                                nameClanJson = "Чарли";
-                            }
-                            const embed = new Discord.RichEmbed()
-                            .setTitle(":bar_chart: Статистика по бойцу")
-                            .setColor(0x02A5D0)
-                            .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
-                            .setFooter("Бот клана", "")
-                            .setTimestamp()
-                            message.channel.send({embed});
                         }
                     }
                 });
@@ -567,24 +578,35 @@ client.on('message', message => {
                             } else if (res.statusCode !== 200) {
                                 console.log('Status:', res.statusCode);
                             } else {
-                                //Собираем RichEmbed сообщение
-                                var nameClanJson = "";
-                                if (data.server == 1){
-                                    nameClanJson = "Альфа";
+                                if(data.nickname == "" && data.nickname == "") {
+                                    //Собираем RichEmbed сообщение
+                                    const embed = new Discord.RichEmbed()
+                                    .setTitle(":no_entry_sign: Ошибка")
+                                    .setColor(0x02A5D0)
+                                    .setDescription('Сервер с информацией недоступен')
+                                    .setFooter("Бот клана", "")
+                                    .setTimestamp()
+                                    message.channel.send({embed});
+                                } else {
+                                    //Собираем RichEmbed сообщение
+                                    var nameClanJson = "";
+                                    if (data.server == 1){
+                                        nameClanJson = "Альфа";
+                                    }
+                                    if (data.server == 2){
+                                        nameClanJson = "Браво";
+                                    }
+                                    if (data.server == 3){
+                                        nameClanJson = "Чарли";
+                                    }
+                                    const embed = new Discord.RichEmbed()
+                                    .setTitle(":bar_chart: Статистика по бойцу")
+                                    .setColor(0x02A5D0)
+                                    .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
+                                    .setFooter("Бот клана", "")
+                                    .setTimestamp()
+                                    message.channel.send({embed});
                                 }
-                                if (data.server == 2){
-                                    nameClanJson = "Браво";
-                                }
-                                if (data.server == 3){
-                                    nameClanJson = "Чарли";
-                                }
-                                const embed = new Discord.RichEmbed()
-                                .setTitle(":bar_chart: Статистика по бойцу")
-                                .setColor(0x02A5D0)
-                                .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameClanJson + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
-                                .setFooter("Бот клана", "")
-                                .setTimestamp()
-                                message.channel.send({embed});
                             }
                         }
                     });
