@@ -24,8 +24,8 @@ function hasRole(mem, role){
 
 /* Показывает что бот в сети */
 client.on('ready', () => {
-  client.user.setPresence({ game: { name: 'Warface', type: 0 } })
-   console.log("Бот успешно запущен!")
+    client.user.setPresence({ game: { name: 'Warface', type: 0 } })
+    console.log("Бот успешно запущен!")
 });
 
 
@@ -98,6 +98,16 @@ client.on('message', message => {
                 } else {
                     if (err) {
                         console.log('Error:', err);
+                    } else if (res.statusCode == 403 || res.statusCode == 500) {
+                        console.log('Status:', res.statusCode);
+                        //Собираем RichEmbed сообщение
+                        const embed = new Discord.RichEmbed()
+                        .setTitle(":no_entry_sign: Ошибка")
+                        .setColor(0xFFF100)
+                        .setDescription('Сервер со скриптом недоступен')
+                        .setFooter("Бот клана", "")
+                        .setTimestamp()
+                        message.channel.send({embed});
                     } else if (res.statusCode !== 200) {
                         console.log('Status:', res.statusCode);
                     } else {
@@ -181,6 +191,16 @@ client.on('message', message => {
                     } else {
                         if (err) {
                             console.log('Error:', err);
+                        } else if (res.statusCode == 403 || res.statusCode == 500) {
+                            console.log('Status:', res.statusCode);
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":no_entry_sign: Ошибка")
+                            .setColor(0xFFF100)
+                            .setDescription('Сервер со скриптом недоступен')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
                         } else if (res.statusCode !== 200) {
                             console.log('Status:', res.statusCode);
                         } else {
@@ -297,6 +317,16 @@ client.on('message', message => {
                         } else {
                             if (err) {
                                 console.log('Error:', err);
+                            } else if (res.statusCode == 403 || res.statusCode == 500) {
+                                console.log('Status:', res.statusCode);
+                                //Собираем RichEmbed сообщение
+                                const embed = new Discord.RichEmbed()
+                                .setTitle(":no_entry_sign: Ошибка")
+                                .setColor(0xFFF100)
+                                .setDescription('Сервер со скриптом недоступен')
+                                .setFooter("Бот клана", "")
+                                .setTimestamp()
+                                message.channel.send({embed});
                             } else if (res.statusCode !== 200) {
                                 console.log('Status:', res.statusCode);
                             } else {
@@ -441,6 +471,16 @@ client.on('message', message => {
                     } else {
                         if (err) {
                             console.log('Error:', err);
+                        } else if (res.statusCode == 403 || res.statusCode == 500) {
+                            console.log('Status:', res.statusCode);
+                            //Собираем RichEmbed сообщение
+                            const embed = new Discord.RichEmbed()
+                            .setTitle(":no_entry_sign: Ошибка")
+                            .setColor(0x02A5D0)
+                            .setDescription('Сервер со скриптом недоступен')
+                            .setFooter("Бот клана", "")
+                            .setTimestamp()
+                            message.channel.send({embed});
                         } else if (res.statusCode !== 200) {
                             console.log('Status:', res.statusCode);
                         } else {
@@ -575,6 +615,16 @@ client.on('message', message => {
                         } else {
                             if (err) {
                                 console.log('Error:', err);
+                            } else if (res.statusCode == 403 || res.statusCode == 500) {
+                                console.log('Status:', res.statusCode);
+                                //Собираем RichEmbed сообщение
+                                const embed = new Discord.RichEmbed()
+                                .setTitle(":no_entry_sign: Ошибка")
+                                .setColor(0x02A5D0)
+                                .setDescription('Сервер со скриптом недоступен')
+                                .setFooter("Бот клана", "")
+                                .setTimestamp()
+                                message.channel.send({embed});
                             } else if (res.statusCode !== 200) {
                                 console.log('Status:', res.statusCode);
                             } else {
@@ -640,7 +690,7 @@ client.on('message', message => {
         } else {
         message.channel.send(args.join(" ").substring(7));
         }
-     } else {
+    } else {
         message.channel.send('Ты не `Администратор` или `Модератор`');
     }
     }
@@ -658,7 +708,7 @@ client.on('message', message => {
             }
             message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
         }
-     } else {
+    } else {
         message.channel.send('Ты не `Администратор` или `Модератор`');
     }
     }
@@ -714,7 +764,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 client.on('guildMemberUpdate', (oldMember, newMember) => {
     var logChannel = oldMember.guild.channels.find(c => c.name === 'system');
     if(!logChannel) return;
- 
+
     oldMember.guild.fetchAuditLogs().then(logs => {
         var userID = logs.entries.first().executor.id;
         var userAvatar = logs.entries.first().executor.avatarURL;
@@ -740,13 +790,13 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTimestamp()
             .setFooter("Бот клана", "")
             //.setFooter(oldMember.guild.name, oldMember.guild.iconURL)
- 
+
             logChannel.send(updateNickname);
         }
         //Информируем о добавлении роли пользователю
         if(oldMember.roles.size < newMember.roles.size) {
             let role = newMember.roles.filter(r => !oldMember.roles.has(r.id)).first();
- 
+
             let roleAdded = new Discord.RichEmbed()
             .setTitle('**[ДОБАВЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
@@ -755,13 +805,13 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTimestamp()
             .setFooter("Бот клана", "")
             //.setFooter(userTag, userAvatar)
- 
+
             logChannel.send(roleAdded);
         }
         //Информируем об удалении роли с пользователя
         if(oldMember.roles.size > newMember.roles.size) {
             let role = oldMember.roles.filter(r => !newMember.roles.has(r.id)).first();
- 
+
             let roleRemoved = new Discord.RichEmbed()
             .setTitle('**[УДАЛЕНА РОЛЬ]**')
             //.setThumbnail(oldMember.guild.iconURL)
@@ -770,7 +820,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
             .setTimestamp()
             .setFooter("Бот клана", "")
             //.setFooter(userTag, userAvatar)
- 
+
             logChannel.send(roleRemoved);
         }
     })
