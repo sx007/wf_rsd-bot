@@ -3,13 +3,17 @@
 </p>
 
 <p align="center">
-<a href="http://nodejs.org"><img src="https://img.shields.io/badge/Node.js-10.15.3-blue.svg" alt="Node JS"></a>
+<a><img src="https://img.shields.io/badge/Node.js-10.15.3-blue.svg" alt="Node JS"></a>
+<a><img src="https://img.shields.io/badge/Discord.js-11.6.4-blue.svg" alt="Discord.js"></a>
+<a><img src="https://img.shields.io/badge/Request-2.88.2-blue.svg" alt="Request"></a>
+<a><img src="https://img.shields.io/badge/Version-11.2020.08.16-blue.svg" alt="Version"></a>
 <a href="https://discord.gg/PR57GzV"><img src="https://discordapp.com/api/guilds/307431674671792129/widget.png" alt="Discord server"></a>
 </p>
 
 
 ## Вступление:
-Данный бот создан исключительно в личных (некоммерческих) целях.
+> Данный бот создан исключительно в личных (некоммерческих) целях.
+
 🖥<a href="https://vk.com/wf_rsd">Группа VK</a> клана
 
 ## Техническая информация
