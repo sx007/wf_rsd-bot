@@ -6,7 +6,7 @@
 <a href="http://nodejs.org"><img src="https://img.shields.io/badge/Node.js-10.15.3-red.svg" alt="Node JS"></a>
 <a href="https://discord.js.org"><img src="https://img.shields.io/badge/Discord.js-11.6.4-orange.svg" alt="Discord.js"></a>
 <a href="https://www.npmjs.com/package/request"><img src="https://img.shields.io/badge/Request-2.88.2-yellow.svg" alt="Request"></a>
-<a href="https://github.com/sx007/wf_rsd-bot_v11/blob/master/changelog.md"><img src="https://img.shields.io/badge/Version-11.16.08.2020-brightgreen.svg" alt="Version"></a>
+<a href="https://github.com/sx007/wf_rsd-bot_v11/blob/master/changelog.md"><img src="https://img.shields.io/badge/Version-11.2020.08.16-brightgreen.svg" alt="Version"></a>
 <a href="https://discord.gg/PR57GzV"><img src="https://discordapp.com/api/guilds/307431674671792129/widget.png" alt="Discord server"></a>
 </p>
 
