@@ -1,7 +1,7 @@
 {
   "name": "WF-Clan-bot",
-  "description": "Test",
-  "version": "0.0.1",
+  "description": "Discord bot",
+  "version": "11.16.08.2020",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
