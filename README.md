@@ -59,4 +59,4 @@ __Команды бота:__  `!название_команды`
 | `Пользователю назначили права` | <img src="https://i.imgur.com/QoFbsSH.png" alt="Пользователю назначили права" /> |
 | `У пользователю убирают права` | <img src="https://i.imgur.com/3TPquma.png" alt="У пользователю убирают права" /> |
 | Команда `!клан` | <img src="https://i.imgur.com/PvyUnwY.png" alt="Ежемесячный рейтинг клана" /> |
-| Команда `!боец` | <img src="https://i.imgur.com/hduQRHC.png" alt="Игровая статистика бойца" /> |
+| Команда `!боец` | <img src="https://i.imgur.com/yqZUFUG.png" alt="Игровая статистика бойца" /> |
