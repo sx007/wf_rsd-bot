@@ -508,7 +508,7 @@ client.on('message', message => {
                                 const embed = new Discord.RichEmbed()
                                 .setTitle(":bar_chart: Статистика по бойцу")
                                 .setColor(0x02A5D0)
-                                .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameServer + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Время матчей:**   ``' + data.playtime_h + "ч " + data.playtime_m + "м" + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
+                                .setDescription('**Ник:**   ``' + data.nickname + '``\n**Игровой сервер:**  ``' + nameServer + '``\n**Клан:**  ``' + data.clan_name + '``\n**Ранг:**   ``' + data.rank_id + '``\n**Общее время матчей:**   ``' + data.playtime_h + "ч " + data.playtime_m + "м" + '``\n**Любимый класс PvP:**   ``' + data.favoritPVP + '``\n**Соотн. убийств/смертей:**   ``' + data.pvp + '``\n**Побед/Поражений:**   ``' + data.pvp_wins + " / " + data.pvp_lost + '``\n**Любимый класс PvE:**   ``' + data.favoritPVE + '``\n**Пройдено PvE:**   ``' + data.pve_wins + '``')
                                 .setFooter("Бот клана", "")
                                 .setTimestamp()
                                 message.channel.send({embed});
