@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node bot.js"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "author": "sx007",
   "license": "MIT",
   "dependencies": {
