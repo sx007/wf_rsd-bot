@@ -7,7 +7,7 @@
     "start": "node bot.js"
   },
   "engines": {
-    "node": "10.x"
+    "node": "10.15.3"
   },
   "author": "sx007",
   "license": "MIT",
