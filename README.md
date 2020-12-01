@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.imgur.com/lsNM0IS.jpg" alt="Logo Clan + Discord" />
+<img src="https://i.imgur.com/AnO1ep8.jpg" alt="Logo Clan + Discord" />
 </p>
 
 <p align="center">
