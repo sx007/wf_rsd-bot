@@ -10,12 +10,15 @@
 <a href="https://discord.gg/PR57GzV"><img src="https://discordapp.com/api/guilds/307431674671792129/widget.png" alt="Discord server"></a>
 <a href="https://creativecommons.org/licenses/by/4.0/deed.ru"><img src="https://img.shields.io/badge/license-CC%20BY-%23373737" alt="Creative Commons Attribution"></a>
 </p>
+
 ```javascript
 проверка
 ```
+
 ```CSS
 Проверка
 ```
+
 ```python
 Проверка
 ```
