@@ -11,17 +11,8 @@
 <a href="https://creativecommons.org/licenses/by/4.0/deed.ru"><img src="https://img.shields.io/badge/license-CC%20BY-%23373737" alt="Creative Commons Attribution"></a>
 </p>
 
-```javascript
-проверка
-```
-
-```CSS
-Проверка
-```
-
-```python
-Проверка
-```
+Данная версия бота больше не поддерживается автором.
+======
 
 ## Вступление:
 > Данный бот создан исключительно в личных (некоммерческих) целях.
