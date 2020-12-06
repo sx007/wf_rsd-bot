@@ -4,7 +4,8 @@
 
 <p align="center">
 <a href="http://nodejs.org"><img src="https://img.shields.io/badge/Node.js-10.15.3-red.svg" alt="Node JS"></a>
-<a href="https://discord.js.org"><img src="https://img.shields.io/badge/dynamic/json?color=orange&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.dependencies[%22discord.js%22]&label=Discord.JS" alt="Discord.JS"></a>
+<a href="http://nodejs.org"><img src="https://img.shields.io/badge/dynamic/json?color=red&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.engines.node&label=Node.js" alt="Node.js"></a>
+<a href="https://discord.js.org"><img src="https://img.shields.io/badge/dynamic/json?color=orange&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.dependencies[%22discord.js%22]&label=Discord.js" alt="Discord.js"></a>
 <a href="https://www.npmjs.com/package/request"><img src="https://img.shields.io/badge/Request-2.88.2-yellow.svg" alt="Request"></a>
 <a href="https://github.com/sx007/wf_rsd-bot_v11/blob/master/changelog.md"><img src="https://img.shields.io/badge/dynamic/json?color=brightgreen&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.version&label=Version" alt="Version"></a>
 <a href="https://discord.gg/PR57GzV"><img src="https://discordapp.com/api/guilds/307431674671792129/widget.png" alt="Discord server"></a>
