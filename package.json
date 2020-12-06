@@ -10,7 +10,7 @@
     "node": "10.15.3"
   },
   "author": "sx007",
-  "license": "MIT",
+  "license": "CC BY",
   "dependencies": {
     "discord.js": "^11.6.4",
     "request": "^2.88.2"
