@@ -8,9 +8,8 @@
 <a href="https://discord.js.org"><img src="https://img.shields.io/badge/dynamic/json?color=yellow&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.dependencies.request&label=Request" alt="Request"></a>
 <a href="https://github.com/sx007/wf_rsd-bot_v11/blob/master/changelog.md"><img src="https://img.shields.io/badge/dynamic/json?color=brightgreen&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.version&label=Version" alt="Version"></a>
 <a href="https://discord.gg/PR57GzV"><img src="https://discordapp.com/api/guilds/307431674671792129/widget.png" alt="Discord server"></a>
-<a href="https://creativecommons.org/licenses/by/4.0/deed.ru"><img src="https://img.shields.io/badge/license-CC%20BY-%23373737" alt="Creative Commons Attribution"></a>
+<a href="https://creativecommons.org/licenses/by/4.0/deed.ru"><img src="https://img.shields.io/badge/dynamic/json?color=%23373737&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.license&label=License" alt="Creative Commons Attribution"></a>
 </p>
-
 Данная версия бота не поддерживается автором.
 ======
 
