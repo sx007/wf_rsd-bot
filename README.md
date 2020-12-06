@@ -10,6 +10,7 @@
 <a href="https://discord.gg/PR57GzV"><img src="https://discordapp.com/api/guilds/307431674671792129/widget.png" alt="Discord server"></a>
 <a href="https://creativecommons.org/licenses/by/4.0/deed.ru"><img src="https://img.shields.io/badge/dynamic/json?color=%23373737&url=https://raw.githubusercontent.com/sx007/wf_rsd-bot_v11/master/package.json&query=$.license&label=License" alt="Creative Commons Attribution"></a>
 </p>
+
 Данная версия бота не поддерживается автором.
 ======
 
