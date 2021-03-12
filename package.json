@@ -1,5 +1,5 @@
 {
-  "name": "WF-Clan-bot",
+  "name": "WFClan-bot",
   "description": "Discord bot",
   "version": "11.2020.10.18",
   "main": "bot.js",
